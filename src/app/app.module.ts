@@ -15,6 +15,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { BackgroundGeolocation} from '@ionic-native/background-geolocation';
 import { LocationTrackerProvider } from '../providers/location-tracker/location-tracker';
 import { SocketIoModule,SocketIoConfig} from 'ng-socket-io';
+import { GoogleMaps } from '@ionic-native/google-maps';
+
 const config :SocketIoConfig = {
   url : 'http://192.168.0.17:9095',
   options :{}
@@ -46,6 +48,7 @@ const config :SocketIoConfig = {
     SplashScreen,
     Geolocation,
     BackgroundGeolocation,
+    GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LocationTrackerProvider
   ]

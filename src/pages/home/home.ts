@@ -4,6 +4,16 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationResponse } from '@ionic-native/background-geolocation';
 import {LocationTrackerProvider} from "../../providers/location-tracker/location-tracker";
 import { Socket} from 'ng-socket-io';
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  GoogleMapOptions,
+  CameraPosition,
+  MarkerOptions,
+  Marker
+} from '@ionic-native/google-maps';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -12,13 +22,41 @@ export class HomePage {
   lati: any;
   long: any;
   i : any;
+  map: GoogleMap;
   constructor(
     public navCtrl: NavController,
      public geolocation: Geolocation,
      private backgroundGeolocation: BackgroundGeolocation,
      public locationTracker: LocationTrackerProvider,
-     public socket: Socket) {
+     public socket: Socket,
+     private googleMaps: GoogleMaps) {
     this.i=0;
+    }
+    loadMap(){
+
+      let mapOptions: GoogleMapOptions = {
+        camera: {
+          target: {
+            lat: 43.0741904, // default location
+            lng: -89.3809802 // default location
+          },
+          zoom: 18,
+          tilt: 30
+        }
+      };
+    
+      this.map = this.googleMaps.create('map_canvas', mapOptions);
+    
+      // Wait the MAP_READY before using any methods.
+      this.map.one(GoogleMapsEvent.MAP_READY)
+      .then(() => {
+        // Now you can use all methods safely.
+       // this.getPosition();
+      })
+      .catch(error =>{
+        console.log(error);
+      });
+    
     }
     public start() {
       this.locationTracker.startTracking();
@@ -28,6 +66,7 @@ export class HomePage {
       this.locationTracker.stopTracking();
     }
     ionViewDidLoad(){
+      this.loadMap();
       this.socket.connect();
      /* let watch = this.geolocation.watchPosition();
       //setInterval(function(){ console.log("hola bb") }, 3000);
@@ -63,4 +102,5 @@ export class HomePage {
       this.backgroundGeolocation.start();*/
 
     }
+
 }
