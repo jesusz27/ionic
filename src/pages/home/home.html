@@ -1,16 +1,20 @@
 <ion-header>
-  <ion-navbar color="secondary">
-    <ion-title>
-      Background location tracker
-    </ion-title>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <div id="map_canvas"></div>
+    <div id="map_canvas">
+      <button ion-button full primary (click)="start()">Start Tracking</button>
+      <button ion-button full primary (click)="stop()">Stop Tracking</button>
+
+    </div>
   <h3>Current Latitude: {{locationTracker.lat}}</h3>
   <h3>Current Longitude: {{locationTracker.lng}}</h3>
 
-  <button ion-button full primary (click)="start()">Start Tracking</button>
-  <button ion-button full primary (click)="stop()">Stop Tracking</button>
+
 </ion-content>
