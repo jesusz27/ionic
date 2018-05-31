@@ -9,12 +9,23 @@
 
 <ion-content>
     <div id="map_canvas">
-      <button ion-button full primary (click)="start()">Start Tracking</button>
-      <button ion-button full primary (click)="stop()">Stop Tracking</button>
-
     </div>
-  <h3>Current Latitude: {{locationTracker.lat}}</h3>
-  <h3>Current Longitude: {{locationTracker.lng}}</h3>
+
 
 
 </ion-content>
+<ion-footer text-justify>
+  <ion-toolbar text-center="" color="dark">
+    <ion-buttons>
+      <button ion-button (click)="startStop()">
+        <ion-icon [name]="status ? 'play' :'square'" ></ion-icon>
+      </button>
+      <button ion-button>
+        <ion-icon ></ion-icon>
+      </button>
+      <button ion-button (click)="stop()">
+        <ion-icon name="alert"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

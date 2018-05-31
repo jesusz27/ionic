@@ -13,13 +13,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 import { BackgroundGeolocation} from '@ionic-native/background-geolocation';
-import { LocationTrackerProvider } from '../providers/location-tracker/location-tracker';
+import { LocationTrackerService } from '../providers/location-tracker';
 import { SocketIoModule,SocketIoConfig} from 'ng-socket-io';
 import { GoogleMaps } from '@ionic-native/google-maps';
-import { MapProvider } from '../providers/map/map';
-
+import { MapService } from '../providers/map.service';
+import { SocketService } from '../providers/socket.service';
+import { TrackService } from '../providers/track.service';
 const config :SocketIoConfig = {
-  url : 'http://192.168.0.17:9095',
+  url : 'http://192.168.0.15:9095',
   options :{}
 }
 
@@ -51,8 +52,10 @@ const config :SocketIoConfig = {
     BackgroundGeolocation,
     GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    LocationTrackerProvider,
-    MapProvider
+    LocationTrackerService,
+    MapService,
+    SocketService,
+    TrackService
   ]
 })
 export class AppModule {}

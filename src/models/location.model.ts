@@ -1,5 +1,5 @@
 
-export interface Position {
+export interface Location {
     accuracy: number;
     altitude: number;
     latitude: number;
@@ -10,4 +10,5 @@ export interface Position {
     heading?: any;
     provider?: any;
     locationProvider?: any;
+    idTrack?:string;
 }

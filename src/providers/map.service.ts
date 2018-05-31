@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { Position } from '../../models/position.model';
+import { Location } from '../models/location.model';
 import {
   GoogleMaps,
   GoogleMap,
@@ -14,7 +14,7 @@ import {
 } from '@ionic-native/google-maps';
 
 @Injectable()
-export class MapProvider {
+export class MapService {
   map: GoogleMap;
   listPolyline: any[]= [];
   constructor(private googleMaps: GoogleMaps) {
@@ -23,7 +23,6 @@ export class MapProvider {
   }
 
   public loadMap(idDiv) {
-
     let mapOptions: GoogleMapOptions = {
       camera: {
         target: {
@@ -35,11 +34,10 @@ export class MapProvider {
       }
     };
     this.map = GoogleMaps.create(idDiv, mapOptions);
-
   }
 
-  public drawPolyline(position : Position) {
-    this.addPolyline(position);
+  public drawPolyline(location : Location) {
+    this.addPolyline(location);
     let polylineOptions = {
       points: this.listPolyline,
       'color': '# 0032e9',
@@ -50,20 +48,22 @@ export class MapProvider {
     });
   }
   
-  private addPolyline(position : Position):void{
-    let latLng=new LatLng(position.latitude,position.longitude);
+  private addPolyline(location : Location):void{
+    let latLng=new LatLng(location.latitude,location.longitude);
     this.centerMap(latLng);
     this.listPolyline.push(latLng);
   }
+
   private centerMap(coors: LatLng){
-    // create CameraPosition
     let camaraPosition: CameraPosition<LatLng> = {
      target: coors,
      zoom: 18,
      tilt: 30
    };
- 
    this.map.moveCamera(camaraPosition)
-
   }
+  clear(){
+    this.map.clear()
+  }
+
 }

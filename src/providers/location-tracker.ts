@@ -4,20 +4,20 @@ import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 import { Socket} from 'ng-socket-io';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
-import { Position } from '../../models/position.model';
-import { MapProvider } from "../../providers/map/map";
+import { Location } from '../models/location.model';
+import { MapService } from "../providers/map.service";
 
 @Injectable()
-export class LocationTrackerProvider {
+export class LocationTrackerService {
 
   public watch: any;
-  public position : Position;
+  public location : Location;
 
   constructor(
     public backgroundGeolocation: BackgroundGeolocation,
     public geolocation: Geolocation,
     public socket: Socket,
-    public mapProvider: MapProvider
+    public mapService: MapService
   ) {
 
   }
@@ -28,6 +28,7 @@ export class LocationTrackerProvider {
   }
 
   public stopTracking() {
+    this.mapService.clear();
     this.backgroundGeolocation.stop();
     this.watch.unsubscribe();
   }
@@ -39,7 +40,7 @@ export class LocationTrackerProvider {
       //this.socket.emit('probar','no te mueras -- background'+ location.latitude);
       console.log('BackgroundGeolocation:  ' + JSON.stringify(location));
       //this.position=location
-      this.mapProvider.drawPolyline(this.position);
+      this.mapService.drawPolyline(this.location);
     }, (err) => {
       console.log(err);
       });
@@ -52,11 +53,11 @@ export class LocationTrackerProvider {
       enableHighAccuracy: true
     };
     this.watch = this.geolocation.watchPosition(options).filter((p: any) => p.code === undefined).subscribe((position: Geoposition) => {
-      this.position=position.coords;
+      this.location=position.coords;
      // this.position.time=position.timestamp;
      // this.listPosition.push(this.position);
-      this.mapProvider.drawPolyline(this.position);
-      //this.socket.emit('probar','no te mueras -- foreground'+ position.coords.latitude);
+      this.mapService.drawPolyline(this.location);
+     this.socket.emit('probar','no te mueras -- foreground'+ position.coords.latitude);
 
     });
   }
@@ -71,6 +72,7 @@ export class LocationTrackerProvider {
     return config;
   }
   public loadMap(idDiv){
-    this.mapProvider.loadMap(idDiv);
+    this.mapService.loadMap(idDiv);
   }
+  
 }
