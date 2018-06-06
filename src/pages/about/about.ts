@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { SocketService } from "../../providers/socket.service";
 
 @Component({
   selector: 'page-about',
@@ -7,7 +8,7 @@ import { NavController } from 'ionic-angular';
 })
 export class AboutPage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public socketService: SocketService) {
 
   }
 

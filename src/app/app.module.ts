@@ -12,16 +12,22 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
-import { BackgroundGeolocation} from '@ionic-native/background-geolocation';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { LocationTrackerService } from '../providers/location-tracker';
-import { SocketIoModule,SocketIoConfig} from 'ng-socket-io';
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { MapService } from '../providers/map.service';
 import { SocketService } from '../providers/socket.service';
 import { TrackService } from '../providers/track.service';
-const config :SocketIoConfig = {
-  url : 'http://192.168.0.15:9095',
-  options :{}
+const config: SocketIoConfig = {
+  url: 'http://192.168.0.15:9095',
+  options: {
+    'reconnection': true,
+    'reconnectionDelay': 1000,
+    'reconnectionDelayMax': 5000,
+    'reconnectionAttempts': 5,
+    'transports': ['websocket', 'polling']
+  }
 }
 
 @NgModule({
@@ -51,11 +57,11 @@ const config :SocketIoConfig = {
     Geolocation,
     BackgroundGeolocation,
     GoogleMaps,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     LocationTrackerService,
     MapService,
     SocketService,
     TrackService
   ]
 })
-export class AppModule {}
+export class AppModule { }
