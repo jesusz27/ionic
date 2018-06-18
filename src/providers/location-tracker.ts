@@ -12,7 +12,7 @@ export class LocationTrackerService {
 
   public watch: any;
   public location: Location;
-
+  private idTrack: string = '';
   constructor(
     public backgroundGeolocation: BackgroundGeolocation,
     public geolocation: Geolocation,
@@ -23,14 +23,17 @@ export class LocationTrackerService {
   }
 
   public startTracking() {
+    this.idTrack = this.idTrackrand();
     this.backgroundLocation();
     this.foregroundLocation();
+ 
   }
 
   public stopTracking() {
     this.mapService.clear();
     this.backgroundGeolocation.stop();
     this.watch.unsubscribe();
+    this.reset();
   }
 
   public backgroundLocation() {
@@ -58,11 +61,14 @@ export class LocationTrackerService {
         altitude: position.coords.altitude,
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
+        idTrack: this.idTrack
       };
       // this.position.time=position.timestamp;
       // this.listPosition.push(this.position);
       this.location = location;
-      this.socket.emit('probar', JSON.stringify(this.location));
+      this.socket.emit('probar', JSON.stringify(this.location), (response) => {
+        console.log("response: " + response);
+      });
       this.drawPolyline(this.location);
     });
   }
@@ -83,4 +89,17 @@ export class LocationTrackerService {
     this.mapService.drawPolyline(location);
   }
 
+  private idTrackrand(): string {
+    const chars = "0123456789abcdefABCDEF";
+    const lon = 20;
+    let code = "";
+    for (let x = 0; x < lon; x++) {
+      const rand = Math.floor(Math.random() * chars.length);
+      code += chars.substr(rand, 1);
+    }
+    return code;
+  }
+  private reset(){
+    this.idTrack='';
+  }
 }

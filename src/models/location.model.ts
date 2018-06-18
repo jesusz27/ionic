@@ -10,5 +10,5 @@ export interface Location {
     heading?: any;
     provider?: any;
     locationProvider?: any;
-    idTrack?:string;
+    idTrack?: string;
 }

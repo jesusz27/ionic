@@ -19,6 +19,8 @@ import { GoogleMaps } from '@ionic-native/google-maps';
 import { MapService } from '../providers/map.service';
 import { SocketService } from '../providers/socket.service';
 import { TrackService } from '../providers/track.service';
+import { TrackStorageService } from '../providers/track-storage.service';
+
 const config: SocketIoConfig = {
   url: 'http://192.168.0.15:9095',
   options: {
@@ -61,7 +63,8 @@ const config: SocketIoConfig = {
     LocationTrackerService,
     MapService,
     SocketService,
-    TrackService
+    TrackService,
+    TrackStorageService
   ]
 })
 export class AppModule { }

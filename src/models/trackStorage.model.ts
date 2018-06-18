@@ -1,7 +1,7 @@
 
 import { Location } from './location.model';
 
-export interface Track {
+export interface TrackStorage {
     idTrack?: string;
-    location?: Location;
+    location?: Location[];
 }

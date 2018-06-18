@@ -9,7 +9,7 @@ import { SocketService } from "../../providers/socket.service";
 export class AboutPage {
 
   constructor(public navCtrl: NavController, public socketService: SocketService) {
-
+    console.log("hol soy about");
   }
 
 }

@@ -20,7 +20,8 @@ export class HomePage {
       data => {
         this.location = JSON.parse(data);
         console.log(this.location);
-        locationTrackerService.drawPolyline(this.location)
+        locationTrackerService.drawPolyline(this.location);
+
       },
       error => alert('Observer1, error code: ' + error)
     );
