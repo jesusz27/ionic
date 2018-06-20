@@ -13,7 +13,7 @@ import { Error } from './error.model';
 @Injectable()
 export class HttpService {
 
-    static API_END_POINT = 'http://localhost/restapipfm/web/api/v1';
+    static API_END_POINT = 'http://192.168.0.15:9095';
 
     private token: string;
 

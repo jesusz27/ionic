@@ -1,13 +1,15 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-
+import { HttpService } from '../core/http.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,6 +22,7 @@ import { MapService } from '../providers/map.service';
 import { SocketService } from '../providers/socket.service';
 import { TrackService } from '../providers/track.service';
 import { TrackStorageService } from '../providers/track-storage.service';
+import { TrackDetailCrud } from '../providers/trackDetailCrud.service';
 
 const config: SocketIoConfig = {
   url: 'http://192.168.0.15:9095',
@@ -27,8 +30,7 @@ const config: SocketIoConfig = {
     'reconnection': true,
     'reconnectionDelay': 1000,
     'reconnectionDelayMax': 5000,
-    'reconnectionAttempts': 5,
-    'transports': ['websocket', 'polling']
+    'reconnectionAttempts': 5
   }
 }
 
@@ -43,7 +45,9 @@ const config: SocketIoConfig = {
   imports: [
     BrowserModule,
     SocketIoModule.forRoot(config),
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -60,11 +64,13 @@ const config: SocketIoConfig = {
     BackgroundGeolocation,
     GoogleMaps,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
+    HttpService,
     LocationTrackerService,
     MapService,
     SocketService,
     TrackService,
-    TrackStorageService
+    TrackStorageService,
+    TrackDetailCrud,
   ]
 })
 export class AppModule { }

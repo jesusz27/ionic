@@ -26,8 +26,6 @@ export class SocketService {
     return new Observable(observer => {
       this.socket.on(SocketService.LOCATION_ON, (data) => {
         this.trackStorageService.add(data);
-        console.log("TRack Storage");
-        console.log(this.trackStorageService.trackStorageList);
         observer.next(data);
       });
     })
