@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import { Location } from '../models/location.model';
 import { MapService } from "../providers/map.service";
+import { UserStorageService } from "./user-storage.service"
 
 @Injectable()
 export class LocationTrackerService {
@@ -17,7 +18,8 @@ export class LocationTrackerService {
     public backgroundGeolocation: BackgroundGeolocation,
     public geolocation: Geolocation,
     public socket: Socket,
-    public mapService: MapService
+    public mapService: MapService,
+    public userStorageService: UserStorageService,
   ) {
 
   }
@@ -26,7 +28,6 @@ export class LocationTrackerService {
     this.idTrack = this.idTrackrand();
     this.backgroundLocation();
     this.foregroundLocation();
- 
   }
 
   public stopTracking() {
@@ -61,7 +62,8 @@ export class LocationTrackerService {
         altitude: position.coords.altitude,
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
-        idTrack: this.idTrack
+        idTrack: this.idTrack,
+        idUser: this.userStorageService.idUser,
       };
       // this.position.time=position.timestamp;
       // this.listPosition.push(this.position);

@@ -22,7 +22,9 @@ import { MapService } from '../providers/map.service';
 import { SocketService } from '../providers/socket.service';
 import { TrackService } from '../providers/track.service';
 import { TrackStorageService } from '../providers/track-storage.service';
-import { TrackDetailCrud } from '../providers/trackDetailCrud.service';
+import { TrackDetailCrud } from '../providers/track-detail-crud.service';
+import { UserCrud } from '../providers/user-crud.service';
+import { UserStorageService } from '../providers/user-storage.service';
 
 const config: SocketIoConfig = {
   url: 'http://192.168.0.15:9095',
@@ -71,6 +73,8 @@ const config: SocketIoConfig = {
     TrackService,
     TrackStorageService,
     TrackDetailCrud,
+    UserCrud,
+    UserStorageService
   ]
 })
 export class AppModule { }

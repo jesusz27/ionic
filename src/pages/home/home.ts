@@ -4,6 +4,7 @@ import { LocationTrackerService } from "../../providers/location-tracker";
 import { SocketService } from "../../providers/socket.service";
 import { User } from '../../models/user.model';
 import { Location } from '../../models/location.model';
+import { UserStorageService } from '../../providers/user-storage.service'
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -15,7 +16,11 @@ export class HomePage {
     public navCtrl: NavController,
     public locationTrackerService: LocationTrackerService,
     public socketService: SocketService,
+    public userStorageService:UserStorageService,
   ) {
+    this.userStorageService.setIdUser("Jesus1352");
+    this.socketService.initialize();   
+
     this.socketService.getTrackHelp().subscribe( // Observador
       data => {
         this.location = JSON.parse(data);
@@ -26,7 +31,6 @@ export class HomePage {
       error => alert('Observer1, error code: ' + error)
     );
   }
-
   startStop() {
     if (this.status) {
       this.locationTrackerService.startTracking();

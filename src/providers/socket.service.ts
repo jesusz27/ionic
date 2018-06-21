@@ -3,7 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { Socket } from 'ng-socket-io';
 import * as io from 'ng-socket-io';
 import { User } from '../models/user.model';
-import { TrackStorageService } from './track-storage.service'
+import { TrackStorageService } from './track-storage.service';
+import { UserStorageService } from './user-storage.service'
 
 @Injectable()
 export class SocketService {
@@ -11,15 +12,20 @@ export class SocketService {
   static LOCATION_EMIT = 'probar';
   static LOCATION_ON = 'receptor';
   static ADD_USER = 'addUserSocket';
+ 
+  constructor(public socket: Socket, public trackStorageService: TrackStorageService, public userStorageService: UserStorageService) {
 
-  constructor(public socket: Socket, public trackStorageService: TrackStorageService) {
-    const user: User = { idUser: 'Jesus1352' };
-    this.initialize(user);
   }
 
-  initialize(user: User) {
+  initialize() {
     this.socket.on("connect", (msg) => {
-      this.addUser(user);
+      let $this = this;
+      this.userStorageService.getIdUser()
+        .then((idUser) => {
+          const user: User = { idUser: idUser };
+          console.log("socket init" + idUser);
+          this.addUser(user);
+        });
     });
   }
   getTrackHelp(): Observable<any> {
@@ -34,6 +40,7 @@ export class SocketService {
     this.socket.emit(SocketService.LOCATION_EMIT, location);
   }
   addUser(user: User) {
+    console.log("emit adduser");
     this.socket.emit(SocketService.ADD_USER, user);
   }
 

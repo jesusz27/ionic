@@ -11,4 +11,5 @@ export interface Location {
     provider?: any;
     locationProvider?: any;
     idTrack?: string;
+    idUser?: string;
 }
