@@ -9,6 +9,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { ContactsDangerDetailPage } from '../pages/contacts-danger-detail/contacts-danger-detail'
 import { HttpService } from '../core/http.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -42,7 +43,8 @@ const config: SocketIoConfig = {
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ContactsDangerDetailPage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ const config: SocketIoConfig = {
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ContactsDangerDetailPage
   ],
   providers: [
     StatusBar,

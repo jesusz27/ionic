@@ -14,7 +14,8 @@ export class SocketService {
   static ADD_USER = 'addUserSocket';
  
   constructor(public socket: Socket, public trackStorageService: TrackStorageService, public userStorageService: UserStorageService) {
-
+    const activeSocket=this.getTrackHelp().subscribe();
+    activeSocket.unsubscribe();
   }
 
   initialize() {

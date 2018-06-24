@@ -5,22 +5,24 @@ import { Track } from '../models/track.model';
 import { TrackStorage } from '../models/trackStorage.model';
 import { TrackDetailCrud } from './track-detail-crud.service';
 import { UserCrud } from './user-crud.service';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class TrackStorageService {
-    trackStorageList: TrackStorage[] = [{idTrack:'default'}];
-    constructor(private trackDetailCrud:TrackDetailCrud, private userCrud:UserCrud) {
+    trackStorageList: TrackStorage[] = [];
+    private observableTrackDetail: Subject<TrackStorage[]> = new Subject();
+    private observableTrack: Subject<TrackStorage[]> = new Subject();
+    constructor(private trackDetailCrud: TrackDetailCrud, private userCrud: UserCrud) {
     }
-    add(data: string) {
+    public add(data: string) {
         const location: Location = JSON.parse(data);
         const exist = this.search(location.idTrack);
-        if (exist) {
+        if (exist!=undefined) {
             this.trackStorageList[exist].location.push(location)
+            this.observableTrackDetail.next(this.trackStorageList);
         } else {
-           this.searchTrackDB(location.idTrack,location.idUser);
+            this.searchTrackDB(location.idTrack, location.idUser);
         }
-        console.log("Add TrackSTorage");
-        console.log(this.trackStorageList);
 
     }
     private search(idTrack: string) {
@@ -32,38 +34,43 @@ export class TrackStorageService {
         }
         return exist;
     }
-    private searchTrackDB(idTrack: string,idUser: string) {
+    private searchTrackDB(idTrack: string, idUser: string) {
         return this.trackDetailCrud.readOne(idTrack).subscribe(
-          data => {
-              const locations: Location[]= JSON.parse(data.locationStorage);
-              const exist = this.search(idTrack);
-              if(!exist){
-                  console.log("EXISTE");
-                  console.log(exist);
-                this.trackStorageList.push({
-                    'idTrack': data.idTrack,
-                    'location': locations,
-                    'idUser' : idUser
-                })
-              }
-          }
-        );
-      }
-   /* private searchUser(idUser:string){
-        return this.userCrud.readOne(idUser).subscribe(
             data => {
-                const locations: Location[]= JSON.parse(data.locationStorage);
-                const exist = this.search(code);
-                if(!exist){
-                    console.log("EXISTE");
-                    console.log(exist);
-                  this.trackStorageList.push({
-                      'idTrack': data.idTrack,
-                      'location': locations
-                  })
+                const locations: Location[] = JSON.parse(data.locationStorage);
+                const exist = this.search(idTrack);
+                if (exist==undefined) {
+                    this.trackStorageList.push({
+                        'idTrack': data.idTrack,
+                        'location': locations,
+                        'idUser': idUser
+                    })
+                    this.observableTrack.next(this.trackStorageList);    
                 }
             }
-          );
+        );
     }
-    */
+     getObservableTrack(): Observable<TrackStorage[]>{
+        return this.observableTrack.asObservable();
+     }
+     getObservableTrackDetail(): Observable<TrackStorage[]>{
+        return this.observableTrackDetail.asObservable();
+     }
+    /* private searchUser(idUser:string){
+         return this.userCrud.readOne(idUser).subscribe(
+             data => {
+                 const locations: Location[]= JSON.parse(data.locationStorage);
+                 const exist = this.search(code);
+                 if(!exist){
+                     console.log("EXISTE");
+                     console.log(exist);
+                   this.trackStorageList.push({
+                       'idTrack': data.idTrack,
+                       'location': locations
+                   })
+                 }
+             }
+           );
+     }
+     */
 }

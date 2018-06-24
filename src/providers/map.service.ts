@@ -36,11 +36,28 @@ export class MapService {
     this.map = GoogleMaps.create(idDiv, mapOptions);
   }
 
+  public drawAllPolyline(location : Location[]) {
+    const listPolyline: any[]= [];
+    for(let i=0;i<location.length;i++){
+      const latLng=new LatLng(location[i].latitude,location[i].longitude);
+      listPolyline.push(latLng);
+    }
+    let polylineOptions = {
+      points: listPolyline,
+      'color': '#0032e9',
+      'width': 8,
+      'geodesic': true,
+    };
+    this.map.addPolyline(polylineOptions).then((polyline: Polyline) => {
+    });
+    this.centerMap(listPolyline[listPolyline.length-1]);
+  }
+
   public drawPolyline(location : Location) {
     this.addPolyline(location);
     let polylineOptions = {
       points: this.listPolyline,
-      'color': '# 0032e9',
+      'color': '#0032e9',
       'width': 8,
       'geodesic': true,
     };
@@ -63,7 +80,7 @@ export class MapService {
    this.map.moveCamera(camaraPosition)
   }
   clear(){
-    this.map.clear()
+    this.map.clear();
   }
 
 }

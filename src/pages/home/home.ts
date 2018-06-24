@@ -12,16 +12,17 @@ import { UserStorageService } from '../../providers/user-storage.service'
 export class HomePage {
   status: boolean = true;
   location: Location;
+  suscriber: any;
   constructor(
     public navCtrl: NavController,
     public locationTrackerService: LocationTrackerService,
     public socketService: SocketService,
-    public userStorageService:UserStorageService,
+    public userStorageService: UserStorageService,
   ) {
     this.userStorageService.setIdUser("Jesus1352");
-    this.socketService.initialize();   
+    this.socketService.initialize();
 
-    this.socketService.getTrackHelp().subscribe( // Observador
+    /*this.suscriber = this.socketService.getTrackHelp().subscribe( // Observador
       data => {
         this.location = JSON.parse(data);
         console.log(this.location);
@@ -29,7 +30,7 @@ export class HomePage {
 
       },
       error => alert('Observer1, error code: ' + error)
-    );
+    );*/
   }
   startStop() {
     if (this.status) {
@@ -43,5 +44,6 @@ export class HomePage {
   ionViewDidLoad() {
     this.locationTrackerService.loadMap('map_canvas');
   }
+
 
 }
