@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Socket } from 'ng-socket-io';
-import * as io from 'ng-socket-io';
 import { User } from '../models/user.model';
 import { TrackStorageService } from './track-storage.service';
 import { UserStorageService } from './user-storage.service'
@@ -20,7 +19,6 @@ export class SocketService {
 
   initialize() {
     this.socket.on("connect", (msg) => {
-      let $this = this;
       this.userStorageService.getIdUser()
         .then((idUser) => {
           const user: User = { idUser: idUser };

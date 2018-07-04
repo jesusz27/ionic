@@ -6,6 +6,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
+import { LoginPage } from '../pages/login/login';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -33,7 +34,8 @@ const config: SocketIoConfig = {
     'reconnection': true,
     'reconnectionDelay': 1000,
     'reconnectionDelayMax': 5000,
-    'reconnectionAttempts': 5
+    'reconnectionAttempts': 5,
+    'transports': ['websocket', 'polling'],
   }
 }
 
@@ -43,6 +45,7 @@ const config: SocketIoConfig = {
     AboutPage,
     ContactPage,
     HomePage,
+    LoginPage,
     TabsPage,
     ContactsDangerDetailPage
   ],
@@ -59,6 +62,7 @@ const config: SocketIoConfig = {
     AboutPage,
     ContactPage,
     HomePage,
+    LoginPage,
     TabsPage,
     ContactsDangerDetailPage
   ],

@@ -12,7 +12,7 @@ export class UserStorageService {
     this.storage.ready().then(() => {
         this.storage.set('idUser', idUser);
         });
-    this.idUser=idUser;    
+    this.idUser=idUser;   
     }
 
      getIdUser(): Promise<string> {
