@@ -7,7 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { AboutPage } from '../pages/about/about';
-import { Storage } from '@ionic/storage';
+import { UserStorageService } from '../providers/user-storage.service';
 import { ContactsDangerDetailPage } from '../pages/contacts-danger-detail/contacts-danger-detail';
 
 @Component({
@@ -19,7 +19,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,private storage: Storage) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public userStorageService: UserStorageService) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -48,13 +48,17 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
   homePageRedirect() {
-    this.storage.get('idUser').then(
+    this.userStorageService.getIdUser().then(
       data => {
         if (data != undefined) {
-          this.rootPage = LoginPage;
-        } else {
           this.rootPage = HomePage;
+        } else {
+          this.rootPage = LoginPage;
         }
       });
+  }
+  logout(){
+    this.userStorageService.removeIdUser();
+    window.location.reload(); // reiniciar socket
   }
 }

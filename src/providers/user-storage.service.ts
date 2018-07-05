@@ -22,5 +22,9 @@ export class UserStorageService {
             });
     }
 
+    removeIdUser(){
+        this.storage.clear();
+    }
+
 
 }
