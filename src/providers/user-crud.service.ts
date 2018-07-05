@@ -6,7 +6,7 @@ import { User } from '../models/user.model';
 
 @Injectable()
 export class UserCrud {
-    static END_POINT = '/user';
+  static END_POINT = '/user';
 
   constructor(private httpService: HttpService) {
 
@@ -14,7 +14,10 @@ export class UserCrud {
   readOne(code: String): Observable<any> {
     return this.httpService.get(UserCrud.END_POINT + '/' + code);
   }
-  login(user: User): Observable<any>{
-    return this.httpService.post(UserCrud.END_POINT + '/login/' , user);
+  login(user: User): Observable<any> {
+    return this.httpService.post(UserCrud.END_POINT + '/login/', user);
+  }
+  register(user: User): Observable<any> {
+    return this.httpService.post(UserCrud.END_POINT + '/register/', user);
   }
 }

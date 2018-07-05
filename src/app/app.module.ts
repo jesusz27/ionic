@@ -7,6 +7,7 @@ import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
 import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -46,6 +47,7 @@ const config: SocketIoConfig = {
     ContactPage,
     HomePage,
     LoginPage,
+    RegisterPage,
     TabsPage,
     ContactsDangerDetailPage
   ],
@@ -63,6 +65,7 @@ const config: SocketIoConfig = {
     ContactPage,
     HomePage,
     LoginPage,
+    RegisterPage,
     TabsPage,
     ContactsDangerDetailPage
   ],

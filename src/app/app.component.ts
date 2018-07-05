@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 //import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 import { AboutPage } from '../pages/about/about';
 import { UserStorageService } from '../providers/user-storage.service';
 import { ContactsDangerDetailPage } from '../pages/contacts-danger-detail/contacts-danger-detail';
@@ -51,7 +52,7 @@ export class MyApp {
     this.userStorageService.getIdUser().then(
       data => {
         if (data != undefined) {
-          this.rootPage = HomePage;
+          this.rootPage = RegisterPage;
         } else {
           this.rootPage = LoginPage;
         }

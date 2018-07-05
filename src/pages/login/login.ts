@@ -4,6 +4,7 @@ import { User } from '../../models/user.model';
 import { UserCrud } from '../../providers/user-crud.service'
 import { UserStorageService } from '../../providers/user-storage.service'
 import { HomePage } from '../home/home';
+import { RegisterPage } from '../register/register';
 @Component({
     selector: 'page-login',
     templateUrl: 'login.html'
@@ -28,8 +29,8 @@ export class LoginPage {
         );
     }
 
-    showLoading() {
-        this.nav.setRoot(HomePage)
+    showRegister() {
+        this.nav.setRoot(RegisterPage);
     }
 
 
