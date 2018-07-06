@@ -22,12 +22,15 @@ import { LocationTrackerService } from '../providers/location-tracker';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { MapService } from '../providers/map.service';
+import { ContactService } from '../providers/contact.service';
 import { SocketService } from '../providers/socket.service';
 import { TrackService } from '../providers/track.service';
 import { TrackStorageService } from '../providers/track-storage.service';
 import { TrackDetailCrud } from '../providers/track-detail-crud.service';
-import { UserCrud } from '../providers/user-crud.service';
+import { UserService } from '../providers/user.service';
 import { UserStorageService } from '../providers/user-storage.service';
+import { AuthService } from '../providers/auth.service'; 
+import { RlTagInputModule } from 'angular2-tag-input';
 
 const config: SocketIoConfig = {
   url: 'http://192.168.0.15:9095',
@@ -56,7 +59,8 @@ const config: SocketIoConfig = {
     SocketIoModule.forRoot(config),
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    HttpModule
+    HttpModule,
+    RlTagInputModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -83,8 +87,10 @@ const config: SocketIoConfig = {
     TrackService,
     TrackStorageService,
     TrackDetailCrud,
-    UserCrud,
-    UserStorageService
+    UserService,
+    UserStorageService,
+    AuthService,
+    ContactService
   ]
 })
 export class AppModule { }

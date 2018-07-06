@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { User } from '../../models/user.model';
-import { UserCrud } from '../../providers/user-crud.service'
+import { AuthService } from '../../providers/auth.service'
 import { UserStorageService } from '../../providers/user-storage.service'
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
@@ -11,12 +11,12 @@ import { RegisterPage } from '../register/register';
 })
 export class LoginPage {
     credentials: User = {  idUser: '', password: '' };
-    constructor( private nav: NavController, public userCrud: UserCrud, public userStorageService:UserStorageService) { 
+    constructor( private nav: NavController, public authService: AuthService, public userStorageService:UserStorageService) { 
     }
 
 
     login() {
-        this.userCrud.login(this.credentials).subscribe(
+        this.authService.logIn(this.credentials).subscribe(
             data =>{
                 const user:User = data;
                 this.userStorageService.setIdUser(user.idUser);

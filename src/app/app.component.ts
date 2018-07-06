@@ -8,6 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { AboutPage } from '../pages/about/about';
+import { ContactPage } from '../pages/contact/contact';
 import { UserStorageService } from '../providers/user-storage.service';
 import { ContactsDangerDetailPage } from '../pages/contacts-danger-detail/contacts-danger-detail';
 
@@ -27,6 +28,7 @@ export class MyApp {
     this.pages = [
       { title: 'Login', component: LoginPage },
       { title: 'Home', component: HomePage },
+      { title: 'Contac', component: ContactPage },
       { title: 'AboutPage', component: AboutPage },
       { title: 'ContactsDangerDetailPage', component: ContactsDangerDetailPage }
     ];

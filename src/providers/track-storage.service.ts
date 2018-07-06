@@ -4,7 +4,7 @@ import { Location } from '../models/location.model';
 import { Track } from '../models/track.model';
 import { TrackStorage } from '../models/trackStorage.model';
 import { TrackDetailCrud } from './track-detail-crud.service';
-import { UserCrud } from './user-crud.service';
+import { UserService } from './user.service';
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class TrackStorageService {
     trackStorageList: TrackStorage[] = [];
     private observableTrackDetail: Subject<TrackStorage[]> = new Subject();
     private observableTrack: Subject<TrackStorage[]> = new Subject();
-    constructor(private trackDetailCrud: TrackDetailCrud, private userCrud: UserCrud) {
+    constructor(private trackDetailCrud: TrackDetailCrud, private userCrud: UserService) {
     }
     public add(data: string) {
         const location: Location = JSON.parse(data);
