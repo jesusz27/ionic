@@ -14,15 +14,36 @@
 
 <ion-content padding>
 
+
+
+
   <div *ngIf="searching" class="spinner-container">
     <ion-spinner></ion-spinner>
   </div>
 
   <ion-list *ngIf="toggle">
-    <ion-item *ngFor="let item of autocompleteItems" (click)="selectItem(item.idUser)">
+    <ion-list-header>Today</ion-list-header>
+    <ion-item *ngFor="let item of autocompleteItems" (click)="selectItem(item)">
+      <ion-avatar item-start>
+        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png">
+      </ion-avatar>
       <h2>{{item.idUser}}</h2>
+      <h3>Don't Know What To Do!</h3>
       <p>{{item.email}}</p>
     </ion-item>
   </ion-list>
+
+  <ion-list >
+      <ion-list-header>Contactos</ion-list-header>
+      <ion-item *ngFor="let item of contacts" >
+        <ion-avatar item-start>
+          <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png">
+        </ion-avatar>
+        <h2>{{item.idUser}}</h2>
+        <h3>Don't Know What To Do!</h3>
+        <p>{{item.email}}</p>
+      </ion-item>
+    </ion-list>
+
 
 </ion-content>
