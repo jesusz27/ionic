@@ -23,9 +23,10 @@ export class ContactPage {
   searching: any = false;
   contacts: User[] = [];
 
-  constructor(public navCtrl: NavController, public userService: UserService, public contactService:ContactService,public userStorageService:UserStorageService) {
+  constructor(public navCtrl: NavController, public userService: UserService, public contactService: ContactService, public userStorageService: UserStorageService) {
     this.searchControl = new FormControl();
     this.allUser();
+    this.findContacts();
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
       this.searching = false;
       this.filterItems();
@@ -34,27 +35,51 @@ export class ContactPage {
   allUser() {
     this.userService.findAll().subscribe(
       data => {
-        this.autocompleteItems = data;
-        this.temp = data;
+        this.userStorageService.getIdUser()
+          .then((idUser) => {
+            this.temp = data.filter((item) => {
+              return item.idUser != idUser;
+            })
+            this.autocompleteItems = this.temp;
+          })
       }
     )
   }
+  findContacts() {
+    this.userStorageService.getIdUser()
+      .then((idUser) => {
+        this.contactService.findByCodUser(idUser).subscribe(
+          data => {
+            for (let i = 0; i < data.length; i++) {
+              this.contacts.push(data[i].codContact);
+            }
+          }
+        )
+      })
+  }
   onSearchInput() {
     this.searching = true;
+    if (this.temp && this.contacts) {
+      for (let i = 0; i < this.contacts.length; i++) {
+        this.temp = this.temp.filter((item) => {
+          return item.idUser != this.contacts[i].idUser;
+        })
+      }
+    }
   }
 
-  selectItem(user:User) {
+  selectItem(user: User) {
     this.toggle = false;
     this.contacts.push(user);
-    
+
     this.userStorageService.getIdUser()
-    .then((idUser) => {
-      const contact:Contact = { codUser:idUser,codContact:user.idUser}
+      .then((idUser) => {
+        const contact: Contact = { codUser: idUser, codContact: user.idUser }
         this.contactService.create(contact).subscribe(
           data => console.log("agregado")
         )
       }
-    )
+      )
 
   }
   filterItems() {

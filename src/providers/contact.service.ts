@@ -8,8 +8,8 @@ export class ContactService {
     constructor(public httpService:HttpService) {
 
     }
-    findAll(): Observable<any>{
-        return this.httpService.get(ContactService.END_POINT);
+    findByCodUser(idUser : string): Observable<any>{
+        return this.httpService.get(ContactService.END_POINT + '/' + idUser);
     }
     create(contact: Contact): Observable<any>{
         return this.httpService.post(ContactService.END_POINT, contact);
