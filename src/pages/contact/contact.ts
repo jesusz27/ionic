@@ -70,13 +70,13 @@ export class ContactPage {
 
   selectItem(contactSelect: ContactSelected) {
     this.toggle = false;
-    this.contacts.push(contactSelect);
-
     this.userStorageService.getIdUser()
       .then((idUser) => {
         const contact: Contact = { codUser: idUser, codContact: contactSelect.idUser }
         this.contactService.create(contact).subscribe(
-          data => console.log("agregado")
+          data => {
+            this.contacts.push(data[0]);
+          console.log(this.contacts)}
         )
       }
       )
@@ -107,8 +107,10 @@ export class ContactPage {
           contactSelect.status == "SELECTED" ? status = 'UNSELECTED' : status = 'SELECTED';
           this.contactService.update(contactSelect.id, status).subscribe(
             data => {
-              for (let i = 0; i < data.length; i++) {
-                if (this.contacts[i].idUser = data[0].idUser) {
+              console.log("update");
+              console.log(this.contacts);
+              for (let i = 0; i < this.contacts.length; i++) {
+                if (this.contacts[i].id == data[0].id) {
                   this.contacts[i].status = status;
                 }
               }
@@ -121,7 +123,15 @@ export class ContactPage {
         icon: 'close-circle',
         cssClass: 'EditionIcon',
         handler: () => {
-          console.log('Archive clicked');
+          this.contactService.delete(contactSelect.id).subscribe(
+            data => {
+              for (let i = 0; i < this.contacts.length; i++) {
+                if (this.contacts[i].id == contactSelect.id) {
+                  this.contacts.splice(i, 1);
+                }
+              }
+            }
+          )
         }
       },
       {

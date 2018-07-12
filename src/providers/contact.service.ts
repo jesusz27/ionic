@@ -17,5 +17,7 @@ export class ContactService {
     update(id: string, status: string): Observable<any>{
         return this.httpService.put(ContactService.END_POINT + '/' + id + '/' + status);
     }
-
+    delete(id: string): Observable<any>{
+        return this.httpService.delete(ContactService.END_POINT + '/' + id );
+    }
 }
