@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ActionSheetController } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
 import { UserService } from '../../providers/user.service';
 import { ContactService } from '../../providers/contact.service';
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { UserStorageService } from '../../providers/user-storage.service';
 import 'rxjs/add/operator/debounceTime';
 import { Contact } from '../../models/contact.model';
-
+import { ContactSelected } from '../../models/contactSelected.model';
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
@@ -21,9 +21,9 @@ export class ContactPage {
   toggle: boolean = false;
   searchTerm: string = '';
   searching: any = false;
-  contacts: User[] = [];
+  contacts: ContactSelected[] = [];
 
-  constructor(public navCtrl: NavController, public userService: UserService, public contactService: ContactService, public userStorageService: UserStorageService) {
+  constructor(public navCtrl: NavController, public userService: UserService, public contactService: ContactService, public userStorageService: UserStorageService, public actionSheetCtrl: ActionSheetController) {
     this.searchControl = new FormControl();
     this.allUser();
     this.findContacts();
@@ -51,7 +51,7 @@ export class ContactPage {
         this.contactService.findByCodUser(idUser).subscribe(
           data => {
             for (let i = 0; i < data.length; i++) {
-              this.contacts.push(data[i].codContact);
+              this.contacts.push(data[i]);
             }
           }
         )
@@ -68,13 +68,13 @@ export class ContactPage {
     }
   }
 
-  selectItem(user: User) {
+  selectItem(contactSelect: ContactSelected) {
     this.toggle = false;
-    this.contacts.push(user);
+    this.contacts.push(contactSelect);
 
     this.userStorageService.getIdUser()
       .then((idUser) => {
-        const contact: Contact = { codUser: idUser, codContact: user.idUser }
+        const contact: Contact = { codUser: idUser, codContact: contactSelect.idUser }
         this.contactService.create(contact).subscribe(
           data => console.log("agregado")
         )
@@ -92,5 +92,49 @@ export class ContactPage {
       return ((item.idUser + item.email).toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1);
     })
   }
+  presentActionSheet(contactSelect: ContactSelected) {
+    console.log("presionado");
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Modify your album',
+      buttons: [
+        {
+          text: contactSelect.status != "SELECTED" ? 'Add contacto elegido' : 'contacto no elegido',
+
+          role: 'destructive',
+          icon: contactSelect.status == "SELECTED" ?  'remove-circle' : 'add',
+        handler: () => {
+          let status: string = '';
+          contactSelect.status == "SELECTED" ? status = 'UNSELECTED' : status = 'SELECTED';
+          this.contactService.update(contactSelect.id, status).subscribe(
+            data => {
+              for (let i = 0; i < data.length; i++) {
+                if (this.contacts[i].idUser = data[0].idUser) {
+                  this.contacts[i].status = status;
+                }
+              }
+            }
+          )
+        }
+        },
+      {
+        text: 'Eliminar',
+        icon: 'close-circle',
+        cssClass: 'EditionIcon',
+        handler: () => {
+          console.log('Archive clicked');
+        }
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }
+      ]
+  });
+
+  actionSheet.present();
+}
 
 }

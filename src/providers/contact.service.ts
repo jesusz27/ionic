@@ -14,5 +14,8 @@ export class ContactService {
     create(contact: Contact): Observable<any>{
         return this.httpService.post(ContactService.END_POINT, contact);
     }
+    update(id: string, status: string): Observable<any>{
+        return this.httpService.put(ContactService.END_POINT + '/' + id + '/' + status);
+    }
 
 }
