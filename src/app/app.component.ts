@@ -7,7 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
-import { AboutPage } from '../pages/about/about';
+import { ContactsDangerPage } from '../pages/contacts-danger/contacts-danger';
 import { ContactPage } from '../pages/contact/contact';
 import { UserStorageService } from '../providers/user-storage.service';
 import { ContactsDangerDetailPage } from '../pages/contacts-danger-detail/contacts-danger-detail';
@@ -29,7 +29,7 @@ export class MyApp {
       { title: 'Login', component: LoginPage },
       { title: 'Home', component: HomePage },
       { title: 'Contac', component: ContactPage },
-      { title: 'AboutPage', component: AboutPage },
+      { title: 'ContactsDangerPage', component: ContactsDangerPage },
       { title: 'ContactsDangerDetailPage', component: ContactsDangerDetailPage }
     ];
 
@@ -54,7 +54,7 @@ export class MyApp {
     this.userStorageService.getIdUser().then(
       data => {
         if (data != undefined) {
-          this.rootPage = RegisterPage;
+          this.rootPage = HomePage;
         } else {
           this.rootPage = LoginPage;
         }

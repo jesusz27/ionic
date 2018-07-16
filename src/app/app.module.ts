@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
+import { ContactsDangerPage } from '../pages/contacts-danger/contacts-danger';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { ContactPage } from '../pages/contact/contact';
@@ -30,10 +30,11 @@ import { TrackDetailCrud } from '../providers/track-detail-crud.service';
 import { UserService } from '../providers/user.service';
 import { UserStorageService } from '../providers/user-storage.service';
 import { AuthService } from '../providers/auth.service'; 
+import { NotificationComponent } from '../components/notification/notification'; 
 import { RlTagInputModule } from 'angular2-tag-input';
 
 const config: SocketIoConfig = {
-  url: 'http://192.168.0.15:9095',
+  url: 'http://zea-pfm.herokuapp.com',
   options: {
     'reconnection': true,
     'reconnectionDelay': 1000,
@@ -46,13 +47,14 @@ const config: SocketIoConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
+    ContactsDangerPage,
     ContactPage,
     HomePage,
     LoginPage,
     RegisterPage,
     TabsPage,
-    ContactsDangerDetailPage
+    ContactsDangerDetailPage,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,7 @@ const config: SocketIoConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
+    ContactsDangerPage,
     ContactPage,
     HomePage,
     LoginPage,

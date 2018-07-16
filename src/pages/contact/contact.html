@@ -4,10 +4,8 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
-    <ion-buttons end class="button">
-      <button ion-button icon-only>
-        <ion-icon name="add"></ion-icon>
-      </button>
+    <ion-buttons end>
+      <notification></notification>
     </ion-buttons>
   </ion-navbar>
 </ion-header>

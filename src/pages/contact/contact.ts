@@ -75,7 +75,7 @@ export class ContactPage {
         const contact: Contact = { codUser: idUser, codContact: contactSelect.idUser }
         this.contactService.create(contact).subscribe(
           data => {
-            this.contacts.push(data[0]);
+            this.contacts.push(data);
           console.log(this.contacts)}
         )
       }
@@ -110,7 +110,7 @@ export class ContactPage {
               console.log("update");
               console.log(this.contacts);
               for (let i = 0; i < this.contacts.length; i++) {
-                if (this.contacts[i].id == data[0].id) {
+                if (this.contacts[i].id == data.id) {
                   this.contacts[i].status = status;
                 }
               }
