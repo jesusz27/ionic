@@ -35,12 +35,21 @@ export class MapService {
     };
     this.map = GoogleMaps.create(idDiv, mapOptions);
   }
-
+  public addMarker(location : Location){
+    let marker: Marker = this.map.addMarkerSync({
+      title: 'Ionic',
+      icon: 'blue',
+    //  animation: 'DROP',
+      position: this.toLatLng(location),
+    });
+    marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+      alert('clicked');
+    });
+  }
   public drawAllPolyline(location : Location[]) {
     const listPolyline: any[]= [];
     for(let i=0;i<location.length;i++){
-      const latLng=new LatLng(location[i].latitude,location[i].longitude);
-      listPolyline.push(latLng);
+      listPolyline.push(this.toLatLng(location[i]));
     }
     let polylineOptions = {
       points: listPolyline,
@@ -52,7 +61,9 @@ export class MapService {
     });
     this.centerMap(listPolyline[listPolyline.length-1]);
   }
-
+  toLatLng(location : Location){
+    return  new LatLng(location.latitude,location.longitude);
+  }
   public drawPolyline(location : Location) {
     this.addPolyline(location);
     let polylineOptions = {
@@ -79,6 +90,7 @@ export class MapService {
    };
    this.map.moveCamera(camaraPosition)
   }
+
   clear(){
     this.map.clear();
   }

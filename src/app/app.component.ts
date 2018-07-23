@@ -37,11 +37,19 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      var notificationOpenedCallback = function(jsonData) {
+        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      };
+  
+      window["plugins"].OneSignal
+        .startInit("50b7df5b-0343-4c20-ae2a-ed518bbaefbb", "938474573173")
+        .handleNotificationOpened(notificationOpenedCallback)
+        .endInit();
+
       this.homePageRedirect();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
     });
   }
 

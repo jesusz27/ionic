@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { LocationTrackerService } from "../../providers/location-tracker";
+import { HomeService } from "./home.service";
 import { SocketService } from "../../providers/socket.service";
 import { User } from '../../models/user.model';
 import { Location } from '../../models/location.model';
@@ -15,7 +15,7 @@ export class HomePage {
   suscriber: any;
   constructor(
     public navCtrl: NavController,
-    public locationTrackerService: LocationTrackerService,
+    public homeService: HomeService,
     public socketService: SocketService,
   ) {
     this.socketService.initialize();
@@ -32,15 +32,15 @@ export class HomePage {
   }
   startStop() {
     if (this.status) {
-      this.locationTrackerService.startTracking();
+      this.homeService.startTracking();
     } else {
-      this.locationTrackerService.stopTracking();
+      this.homeService.stopTracking();
     }
     this.status = !this.status;
   }
 
   ionViewDidLoad() {
-    this.locationTrackerService.loadMap('map_canvas');
+    this.homeService.loadMap('map_canvas');
   }
 
 

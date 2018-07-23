@@ -1,50 +1,39 @@
 import { Injectable } from '@angular/core';
 import { BackgroundGeolocation, BackgroundGeolocationConfig } from '@ionic-native/background-geolocation';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
-import { Socket } from 'ng-socket-io';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import { Location } from '../models/location.model';
-import { MapService } from "../providers/map.service";
-import { UserStorageService } from "./user-storage.service"
-
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class LocationTrackerService {
 
-  public watch: any;
-  public location: Location;
-  private idTrack: string = '';
+  watch: any;
+  location: Location;
+  locationObservable: Subject<Location> = new Subject();
+
   constructor(
     public backgroundGeolocation: BackgroundGeolocation,
     public geolocation: Geolocation,
-    public socket: Socket,
-    public mapService: MapService,
-    public userStorageService: UserStorageService,
   ) {
 
   }
 
-  public startTracking() {
-    this.idTrack = this.idTrackrand();
+  public initialize() {
     this.backgroundLocation();
     this.foregroundLocation();
   }
 
-  public stopTracking() {
-    this.mapService.clear();
+  public end() {
     this.backgroundGeolocation.stop();
     this.watch.unsubscribe();
-    this.reset();
   }
 
   public backgroundLocation() {
     let config = this.config();
-
     this.backgroundGeolocation.configure(config).subscribe((location) => {
-      //this.socket.emit('probar','no te mueras -- background'+ location.latitude);
       console.log('BackgroundGeolocation:  ' + JSON.stringify(location));
-      //this.position=location
-      // this.mapService.drawPolyline(this.location);
     }, (err) => {
       console.log(err);
     });
@@ -62,16 +51,8 @@ export class LocationTrackerService {
         altitude: position.coords.altitude,
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
-        idTrack: this.idTrack,
-        idUser: this.userStorageService.idUser,
       };
-      // this.position.time=position.timestamp;
-      // this.listPosition.push(this.position);
-      this.location = location;
-      this.socket.emit('probar', JSON.stringify(this.location), (response) => {
-        console.log("response: " + response);
-      });
-      this.drawPolyline(this.location);
+      this.locationObservable.next(location);
     });
   }
   public config() {
@@ -84,24 +65,7 @@ export class LocationTrackerService {
     };
     return config;
   }
-  public loadMap(idDiv) {
-    this.mapService.loadMap(idDiv);
-  }
-  public drawPolyline(location: Location) {
-    this.mapService.drawPolyline(location);
-  }
-
-  private idTrackrand(): string {
-    const chars = "0123456789abcdefABCDEF";
-    const lon = 20;
-    let code = "";
-    for (let x = 0; x < lon; x++) {
-      const rand = Math.floor(Math.random() * chars.length);
-      code += chars.substr(rand, 1);
-    }
-    return code;
-  }
-  private reset(){
-    this.idTrack='';
-  }
+  getLocationObservable(): Observable<Location>{
+    return this.locationObservable.asObservable();
+ }
 }

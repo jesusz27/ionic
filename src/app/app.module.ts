@@ -20,6 +20,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { LocationTrackerService } from '../providers/location-tracker';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+import { HomeService } from '../pages/home/home.service';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { MapService } from '../providers/map.service';
 import { ContactService } from '../providers/contact.service';
@@ -92,7 +93,8 @@ const config: SocketIoConfig = {
     UserService,
     UserStorageService,
     AuthService,
-    ContactService
+    ContactService,
+    HomeService
   ]
 })
 export class AppModule { }
