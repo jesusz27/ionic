@@ -17,4 +17,7 @@ export class UserService {
   findAll(): Observable<any>{
     return this.httpService.get(UserService.END_POINT);
   }
+  updateIdNotification(user): Observable<any> {
+    return this.httpService.put(UserService.END_POINT + '/notification/', user);
+  }
 }

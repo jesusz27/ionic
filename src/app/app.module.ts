@@ -13,12 +13,13 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ContactsDangerDetailPage } from '../pages/contacts-danger-detail/contacts-danger-detail'
 import { HttpService } from '../core/http.service';
-
+import { OneSignal } from '@ionic-native/onesignal';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { LocationTrackerService } from '../providers/location-tracker';
+import { OneSignalService } from '../providers/one-signal.service';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 import { HomeService } from '../pages/home/home.service';
 import { GoogleMaps } from '@ionic-native/google-maps';
@@ -80,11 +81,13 @@ const config: SocketIoConfig = {
     StatusBar,
     SplashScreen,
     Geolocation,
+    OneSignal,
     BackgroundGeolocation,
     GoogleMaps,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     HttpService,
     LocationTrackerService,
+    OneSignalService,
     MapService,
     SocketService,
     TrackService,

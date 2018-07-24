@@ -4,6 +4,8 @@ import { HomeService } from "./home.service";
 import { SocketService } from "../../providers/socket.service";
 import { User } from '../../models/user.model';
 import { Location } from '../../models/location.model';
+import { OneSignalService } from '../../providers/one-signal.service';
+import { ContactsDangerPage } from "../contacts-danger/contacts-danger"
 
 @Component({
   selector: 'page-home',
@@ -15,11 +17,16 @@ export class HomePage {
   suscriber: any;
   constructor(
     public navCtrl: NavController,
+    public oneSignalService:OneSignalService,
     public homeService: HomeService,
     public socketService: SocketService,
   ) {
     this.socketService.initialize();
-
+    this.oneSignalService.getNoticationObservable().subscribe(
+      data => {
+        this.navCtrl.push(ContactsDangerPage);
+      }
+    )
     /*this.suscriber = this.socketService.getTrackHelp().subscribe( // Observador
       data => {
         this.location = JSON.parse(data);
