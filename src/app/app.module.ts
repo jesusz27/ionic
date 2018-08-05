@@ -11,6 +11,9 @@ import { RegisterPage } from '../pages/register/register';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { TrackSentPage } from '../pages/track-sent/track-sent';
+import { TrackDetailPage } from '../pages/track-detail/track-detail'
+import { TrackReceivedPage } from '../pages/track-received/track-received';
 import { ContactsDangerDetailPage } from '../pages/contacts-danger-detail/contacts-danger-detail'
 import { HttpService } from '../core/http.service';
 import { OneSignal } from '@ionic-native/onesignal';
@@ -28,7 +31,7 @@ import { ContactService } from '../providers/contact.service';
 import { SocketService } from '../providers/socket.service';
 import { TrackService } from '../providers/track.service';
 import { TrackStorageService } from '../providers/track-storage.service';
-import { TrackDetailCrud } from '../providers/track-detail-crud.service';
+import { TrackDetailService } from '../providers/track-detail.service';
 import { UserService } from '../providers/user.service';
 import { UserStorageService } from '../providers/user-storage.service';
 import { AuthService } from '../providers/auth.service'; 
@@ -36,7 +39,8 @@ import { NotificationComponent } from '../components/notification/notification';
 import { RlTagInputModule } from 'angular2-tag-input';
 
 const config: SocketIoConfig = {
-  url: 'http://zea-pfm.herokuapp.com',
+  // url: 'http://zea-pfm.herokuapp.com',
+  url: 'http://192.168.0.15:9095',
   options: {
     'reconnection': true,
     'reconnectionDelay': 1000,
@@ -55,6 +59,9 @@ const config: SocketIoConfig = {
     LoginPage,
     RegisterPage,
     TabsPage,
+    TrackSentPage,
+    TrackDetailPage,
+    TrackReceivedPage,
     ContactsDangerDetailPage,
     NotificationComponent
   ],
@@ -75,6 +82,9 @@ const config: SocketIoConfig = {
     LoginPage,
     RegisterPage,
     TabsPage,
+    TrackSentPage,
+    TrackDetailPage,
+    TrackReceivedPage,
     ContactsDangerDetailPage
   ],
   providers: [
@@ -92,7 +102,7 @@ const config: SocketIoConfig = {
     SocketService,
     TrackService,
     TrackStorageService,
-    TrackDetailCrud,
+    TrackDetailService,
     UserService,
     UserStorageService,
     AuthService,

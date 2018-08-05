@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Location } from '../models/location.model';
-import { Track } from '../models/track.model';
+
 import { TrackStorage } from '../models/trackStorage.model';
-import { TrackDetailCrud } from './track-detail-crud.service';
+import { TrackDetailService } from './track-detail.service';
 import { UserService } from './user.service';
 import { Subject } from 'rxjs/Subject';
 
@@ -12,7 +12,7 @@ export class TrackStorageService {
     trackStorageList: TrackStorage[] = [];
     private observableTrackDetail: Subject<TrackStorage[]> = new Subject();
     private observableTrack: Subject<TrackStorage[]> = new Subject();
-    constructor(private trackDetailCrud: TrackDetailCrud, private userCrud: UserService) {
+    constructor(private trackDetailService: TrackDetailService, private userCrud: UserService) {
     }
     public add(data: string) {
         const location: Location = JSON.parse(data);
@@ -35,7 +35,7 @@ export class TrackStorageService {
         return exist;
     }
     private searchTrackDB(idTrack: string, idUser: string) {
-        return this.trackDetailCrud.readOne(idTrack).subscribe(
+        return this.trackDetailService.findByIdTrack(idTrack).subscribe(
             data => {
                 const locations: Location[] = JSON.parse(data.locationStorage);
                 const exist = this.search(idTrack);

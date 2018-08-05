@@ -11,8 +11,8 @@ export class HomeService {
     private idTrack: string = '';
     subscribe: any;
     constructor(public locationTrackerService: LocationTrackerService, public socket: Socket, public mapService: MapService, public userStorageService: UserStorageService) {
-        this.userStorageService.getIdUser()
-            .then((idUser) => this.userStorageService.setIdUser(idUser))
+       /* this.userStorageService.getIdUser()
+            .then((idUser) => this.userStorageService.setIdUser(idUser))*/
     }
     public startTracking() {
         this.idTrack = this.idTrackrand();

@@ -8,23 +8,22 @@ export class UserStorageService {
     constructor(public storage: Storage) {
 
     }
-    setIdUser(idUser:string) {
-    this.storage.ready().then(() => {
+    setIdUser(idUser: string) {
         this.storage.set('idUser', idUser);
-        });
-    this.idUser=idUser;   
+        console.log("ingreso user storage");
+        this.idUser = idUser;
     }
 
-     getIdUser(): Promise<string> {
-        return  this.storage.get('idUser')
+    getIdUser(): Promise<string> {
+        return this.storage.get('idUser')
             .then((idUser) => {
                 return idUser;
             });
     }
 
-    removeIdUser(){
+    removeIdUser() {
         this.storage.clear();
-        
+
     }
 
 

@@ -1,7 +1,6 @@
-
-import { Location } from './location.model';
-
+import { User } from "./user.model";
 export interface Track {
-    idTrack?: string;
-    location?: Location;
+    codUser: User;
+    conContact: User;
+    trackDetail: string;
 }

@@ -3,7 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-//import { TabsPage } from '../pages/tabs/tabs';
+import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
@@ -11,7 +11,7 @@ import { ContactsDangerPage } from '../pages/contacts-danger/contacts-danger';
 import { ContactPage } from '../pages/contact/contact';
 import { UserStorageService } from '../providers/user-storage.service';
 import { ContactsDangerDetailPage } from '../pages/contacts-danger-detail/contacts-danger-detail';
-
+import { TrackSentPage } from '../pages/track-sent/track-sent';
 @Component({
   templateUrl: 'app.html'
 })
@@ -30,7 +30,9 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Contac', component: ContactPage },
       { title: 'ContactsDangerPage', component: ContactsDangerPage },
-      { title: 'ContactsDangerDetailPage', component: ContactsDangerDetailPage }
+      { title: 'ContactsDangerDetailPage', component: ContactsDangerDetailPage },
+      { title: 'TrackPage', component: TrackSentPage },
+      { title: 'Tabs', component: TabsPage }
     ];
 
   }
