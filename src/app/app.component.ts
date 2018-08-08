@@ -12,6 +12,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { UserStorageService } from '../providers/user-storage.service';
 import { ContactsDangerDetailPage } from '../pages/contacts-danger-detail/contacts-danger-detail';
 import { TrackSentPage } from '../pages/track-sent/track-sent';
+import { PerfilPage} from '../pages/perfil/perfil';
 @Component({
   templateUrl: 'app.html'
 })
@@ -32,7 +33,8 @@ export class MyApp {
       { title: 'ContactsDangerPage', component: ContactsDangerPage },
       { title: 'ContactsDangerDetailPage', component: ContactsDangerDetailPage },
       { title: 'TrackPage', component: TrackSentPage },
-      { title: 'Tabs', component: TabsPage }
+      { title: 'Tabs', component: TabsPage },
+      { title: 'Perfil', component: PerfilPage }
     ];
 
   }
@@ -57,7 +59,7 @@ export class MyApp {
         if (data != undefined) {
           this.rootPage = HomePage;
         } else {
-          this.rootPage = LoginPage;
+          this.rootPage = PerfilPage;
         }
       });
   }

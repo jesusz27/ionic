@@ -1,0 +1,55 @@
+<ion-header>
+
+  <ion-navbar>
+
+    <button ion-button menuToggle start>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Title
+    </ion-title>
+    <ion-buttons end>
+      <notification></notification>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <div class="register-box">
+    <ion-row>
+      <ion-col>
+        <ion-list inset>
+
+          <ion-item>
+            <ion-input type="text" placeholder="Nombre" name="firstName" [(ngModel)]="person.firstName" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="text" placeholder="Apellido" name="lastName" [(ngModel)]="person.lastName" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" placeholder="Phone" name="phone" [(ngModel)]="person.phone" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Date</ion-label>
+            <ion-datetime [(ngModel)]="person.birthdate"></ion-datetime>
+          </ion-item>
+
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row >
+      <ion-col  *ngIf="toogle" class="signup-col" >
+        <button ion-button class="submit-btn" full (click)="save()">Guardar</button>
+      </ion-col>
+      <ion-col *ngIf="!toogle" class="signup-col" >
+        <button ion-button class="submit-btn" full (click)="update()">Actualizar</button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+
+
+</ion-content>

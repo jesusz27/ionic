@@ -15,6 +15,8 @@ import { TrackSentPage } from '../pages/track-sent/track-sent';
 import { TrackDetailPage } from '../pages/track-detail/track-detail'
 import { TrackReceivedPage } from '../pages/track-received/track-received';
 import { ContactsDangerDetailPage } from '../pages/contacts-danger-detail/contacts-danger-detail'
+import { ConfigPage } from '../pages/config/config';
+import { PerfilPage } from '../pages/perfil/perfil';
 import { HttpService } from '../core/http.service';
 import { OneSignal } from '@ionic-native/onesignal';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -35,6 +37,7 @@ import { TrackDetailService } from '../providers/track-detail.service';
 import { UserService } from '../providers/user.service';
 import { UserStorageService } from '../providers/user-storage.service';
 import { AuthService } from '../providers/auth.service'; 
+import { PersonService } from '../providers/person.service';
 import { NotificationComponent } from '../components/notification/notification'; 
 import { RlTagInputModule } from 'angular2-tag-input';
 
@@ -63,6 +66,8 @@ const config: SocketIoConfig = {
     TrackDetailPage,
     TrackReceivedPage,
     ContactsDangerDetailPage,
+    ConfigPage,
+    PerfilPage,
     NotificationComponent
   ],
   imports: [
@@ -85,7 +90,9 @@ const config: SocketIoConfig = {
     TrackSentPage,
     TrackDetailPage,
     TrackReceivedPage,
-    ContactsDangerDetailPage
+    ContactsDangerDetailPage,
+    ConfigPage,
+    PerfilPage
   ],
   providers: [
     StatusBar,
@@ -106,6 +113,7 @@ const config: SocketIoConfig = {
     UserService,
     UserStorageService,
     AuthService,
+    PersonService,
     ContactService,
     HomeService
   ]

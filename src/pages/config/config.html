@@ -1,0 +1,28 @@
+<ion-header>
+
+    <ion-navbar>
+  
+      <button ion-button menuToggle start>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        Title
+      </ion-title>
+      <ion-buttons end>
+        <notification></notification>
+      </ion-buttons>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  <ion-content>
+    <ion-list >
+        <ion-list-header>CONFIGURACIÓN DE LA APP</ion-list-header>
+        <ion-item *ngFor="let item of pages" (click)="showPage(item)">
+          <h2>{{item.title}}</h2>
+        </ion-item>
+      </ion-list>
+  
+  
+  
+  </ion-content>
