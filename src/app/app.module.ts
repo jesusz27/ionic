@@ -42,7 +42,8 @@ import { PersonService } from '../providers/person.service';
 import { NotificationComponent } from '../components/notification/notification'; 
 import { RlTagInputModule } from 'angular2-tag-input';
 import { Camera } from '@ionic-native/camera';
-
+import { FileTransfer} from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 const config: SocketIoConfig = {
   // url: 'http://zea-pfm.herokuapp.com',
   url: 'http://192.168.0.15:9095',
@@ -107,6 +108,8 @@ const config: SocketIoConfig = {
     GoogleMaps,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Camera,
+    FileTransfer,
+    File,
     HttpService,
     LocationTrackerService,
     OneSignalService,

@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 @Component({
     selector: 'page-avatar',
     templateUrl: 'avatar.html'
 })
 export class AvatarPage {
     base64Image: any;
-    constructor(public navCtr: NavController, private camera: Camera, private sanitizer: DomSanitizer) {
-
+    constructor(public navCtr: NavController, private camera: Camera, private sanitizer: DomSanitizer, private transfer: FileTransfer, private file: File, private loadingCtrl: LoadingController) {
     }
     openGallery() {
         const options: CameraOptions = {
@@ -20,15 +21,35 @@ export class AvatarPage {
             sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
         }
         this.camera.getPicture(options).then((imageData) => {
-            // imageData is either a base64 encoded string or a file URI
-            // If it's base64 (DATA_URL):
-            console.log(imageData);
             this.base64Image = 'data:image/jpeg;base64,' + imageData;
-            console.log("entro img");
-            console.log(this.base64Image);
         }, (err) => {
-            // Handle err
+            console.log("error")
         });
 
+    }
+    upload() {
+    let loader = this.loadingCtrl.create({
+        content: "Uploading..."
+      });
+      loader.present();
+      const fileTransfer: FileTransferObject = this.transfer.create();
+      var random = Math.floor(Math.random() * 100);
+      let options: FileUploadOptions = {
+        fileKey: 'avatar',
+        fileName: "myImage_" + random + ".jpg",
+        chunkedMode: false,
+        httpMethod: 'post',
+        mimeType: "image/jpeg",
+        headers: {}
+      }
+      fileTransfer.upload(this.base64Image, 'http://192.168.0.15:9095/user/avatar', options)
+        .then((data) => {
+          alert("Success");
+          loader.dismiss();
+        }, (err) => {
+          console.log(err);
+          alert("Error");
+          loader.dismiss();
+        });  
     }
 }
