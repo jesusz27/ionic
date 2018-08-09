@@ -17,6 +17,7 @@ import { TrackReceivedPage } from '../pages/track-received/track-received';
 import { ContactsDangerDetailPage } from '../pages/contacts-danger-detail/contacts-danger-detail'
 import { ConfigPage } from '../pages/config/config';
 import { PerfilPage } from '../pages/perfil/perfil';
+import { AvatarPage } from '../pages/avatar/avatar'; 
 import { HttpService } from '../core/http.service';
 import { OneSignal } from '@ionic-native/onesignal';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -40,6 +41,7 @@ import { AuthService } from '../providers/auth.service';
 import { PersonService } from '../providers/person.service';
 import { NotificationComponent } from '../components/notification/notification'; 
 import { RlTagInputModule } from 'angular2-tag-input';
+import { Camera } from '@ionic-native/camera';
 
 const config: SocketIoConfig = {
   // url: 'http://zea-pfm.herokuapp.com',
@@ -68,6 +70,7 @@ const config: SocketIoConfig = {
     ContactsDangerDetailPage,
     ConfigPage,
     PerfilPage,
+    AvatarPage,
     NotificationComponent
   ],
   imports: [
@@ -92,7 +95,8 @@ const config: SocketIoConfig = {
     TrackReceivedPage,
     ContactsDangerDetailPage,
     ConfigPage,
-    PerfilPage
+    PerfilPage,
+    AvatarPage
   ],
   providers: [
     StatusBar,
@@ -102,6 +106,7 @@ const config: SocketIoConfig = {
     BackgroundGeolocation,
     GoogleMaps,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
+    Camera,
     HttpService,
     LocationTrackerService,
     OneSignalService,

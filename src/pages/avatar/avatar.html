@@ -1,0 +1,20 @@
+<ion-header>
+
+    <ion-navbar>
+  
+      <button ion-button menuToggle start>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        Title
+      </ion-title>
+      <ion-buttons end>
+        <notification></notification>
+      </ion-buttons>
+    </ion-navbar>
+  
+  </ion-header>
+  <ion-content>
+    <button ion-button  full (click)="openGallery()" >Gallery</button>
+    <img [src]="base64Image" width="80" height="80">
+  </ion-content>

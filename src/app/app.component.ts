@@ -13,6 +13,7 @@ import { UserStorageService } from '../providers/user-storage.service';
 import { ContactsDangerDetailPage } from '../pages/contacts-danger-detail/contacts-danger-detail';
 import { TrackSentPage } from '../pages/track-sent/track-sent';
 import { PerfilPage} from '../pages/perfil/perfil';
+import { AvatarPage } from '../pages/avatar/avatar'; 
 @Component({
   templateUrl: 'app.html'
 })
@@ -34,7 +35,8 @@ export class MyApp {
       { title: 'ContactsDangerDetailPage', component: ContactsDangerDetailPage },
       { title: 'TrackPage', component: TrackSentPage },
       { title: 'Tabs', component: TabsPage },
-      { title: 'Perfil', component: PerfilPage }
+      { title: 'Perfil', component: PerfilPage },
+      { title: 'Avatar', component: AvatarPage }
     ];
 
   }
