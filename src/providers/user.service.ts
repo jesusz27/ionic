@@ -20,4 +20,7 @@ export class UserService {
   updateIdNotification(user): Observable<any> {
     return this.httpService.put(UserService.END_POINT + '/notification/', user);
   }
+  updatePassword(user): Observable<any> {
+    return this.httpService.put(UserService.END_POINT + '/pass/', user);
+  }
 }

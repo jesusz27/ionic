@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class UserStorageService {
     public idUser: string;
+    public avatar: string;
     constructor(public storage: Storage) {
 
     }
@@ -20,11 +21,13 @@ export class UserStorageService {
                 return idUser;
             });
     }
-
+    setAvatar(avatar: string){
+        this.avatar = avatar;
+    }
+    getAvatar():string{
+        return this.avatar;
+    }
     removeIdUser() {
         this.storage.clear();
-
     }
-
-
 }

@@ -14,6 +14,7 @@ import { ContactsDangerDetailPage } from '../pages/contacts-danger-detail/contac
 import { TrackSentPage } from '../pages/track-sent/track-sent';
 import { PerfilPage} from '../pages/perfil/perfil';
 import { AvatarPage } from '../pages/avatar/avatar'; 
+import { PasswordPage } from '../pages/password/password';
 @Component({
   templateUrl: 'app.html'
 })
@@ -36,7 +37,8 @@ export class MyApp {
       { title: 'TrackPage', component: TrackSentPage },
       { title: 'Tabs', component: TabsPage },
       { title: 'Perfil', component: PerfilPage },
-      { title: 'Avatar', component: AvatarPage }
+      { title: 'Avatar', component: AvatarPage },
+      { title: 'pass', component: PasswordPage }
     ];
 
   }

@@ -18,6 +18,7 @@ import { ContactsDangerDetailPage } from '../pages/contacts-danger-detail/contac
 import { ConfigPage } from '../pages/config/config';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { AvatarPage } from '../pages/avatar/avatar'; 
+import { PasswordPage } from '../pages/password/password';
 import { HttpService } from '../core/http.service';
 import { OneSignal } from '@ionic-native/onesignal';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -72,6 +73,7 @@ const config: SocketIoConfig = {
     ConfigPage,
     PerfilPage,
     AvatarPage,
+    PasswordPage,
     NotificationComponent
   ],
   imports: [
@@ -97,7 +99,8 @@ const config: SocketIoConfig = {
     ContactsDangerDetailPage,
     ConfigPage,
     PerfilPage,
-    AvatarPage
+    AvatarPage,
+    PasswordPage,
   ],
   providers: [
     StatusBar,
