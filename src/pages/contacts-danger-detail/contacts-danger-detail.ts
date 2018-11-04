@@ -59,7 +59,7 @@ export class ContactsDangerDetailPage {
     }
   }
   ionViewDidLoad() {
-    this.mapService.loadMap('map_canvas');
+    this.mapService.loadMap('map_canvas3');
   }
   ngOnDestroy() {
     this.suscriber.unsubscribe();

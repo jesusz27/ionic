@@ -3,4 +3,5 @@ export interface Track {
     codUser: User;
     conContact: User;
     trackDetail: string;
+    fecha: Date;
 }

@@ -76,7 +76,8 @@ export class ContactPage {
         this.contactService.create(contact).subscribe(
           data => {
             this.contacts.push(data);
-          console.log(this.contacts)}
+            console.log(this.contacts)
+          }
         )
       }
       )
@@ -95,56 +96,56 @@ export class ContactPage {
   presentActionSheet(contactSelect: ContactSelected) {
     console.log("presionado");
     let actionSheet = this.actionSheetCtrl.create({
-      title: 'Modify your album',
+      title: 'Opciones',
       buttons: [
         {
-          text: contactSelect.status != "SELECTED" ? 'Add contacto elegido' : 'contacto no elegido',
+          text: contactSelect.status != "SELECTED" ? 'Contacto elegido' : 'Contacto no elegido',
 
           role: 'destructive',
-          icon: contactSelect.status == "SELECTED" ?  'remove-circle' : 'add',
-        handler: () => {
-          let status: string = '';
-          contactSelect.status == "SELECTED" ? status = 'UNSELECTED' : status = 'SELECTED';
-          this.contactService.update(contactSelect.id, status).subscribe(
-            data => {
-              console.log("update");
-              console.log(this.contacts);
-              for (let i = 0; i < this.contacts.length; i++) {
-                if (this.contacts[i].id == data.id) {
-                  this.contacts[i].status = status;
+          icon: contactSelect.status == "SELECTED" ? 'remove-circle' : 'add',
+          handler: () => {
+            let status: string = '';
+            contactSelect.status == "SELECTED" ? status = 'UNSELECTED' : status = 'SELECTED';
+            this.contactService.update(contactSelect.id, status).subscribe(
+              data => {
+                console.log("update");
+                console.log(this.contacts);
+                for (let i = 0; i < this.contacts.length; i++) {
+                  if (this.contacts[i].id == data.id) {
+                    this.contacts[i].status = status;
+                  }
                 }
               }
-            }
-          )
-        }
+            )
+          }
         },
-      {
-        text: 'Eliminar',
-        icon: 'close-circle',
-        cssClass: 'EditionIcon',
-        handler: () => {
-          this.contactService.delete(contactSelect.id).subscribe(
-            data => {
-              for (let i = 0; i < this.contacts.length; i++) {
-                if (this.contacts[i].id == contactSelect.id) {
-                  this.contacts.splice(i, 1);
+        {
+          text: 'Eliminar',
+          icon: 'close-circle',
+          cssClass: 'EditionIcon',
+          handler: () => {
+            this.contactService.delete(contactSelect.id).subscribe(
+              data => {
+                for (let i = 0; i < this.contacts.length; i++) {
+                  if (this.contacts[i].id == contactSelect.id) {
+                    this.contacts.splice(i, 1);
+                  }
                 }
               }
-            }
-          )
+            )
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
         }
-      },
-      {
-        text: 'Cancel',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }
       ]
-  });
+    });
 
-  actionSheet.present();
-}
+    actionSheet.present();
+  }
 
 }

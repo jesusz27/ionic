@@ -30,7 +30,7 @@ export class LoginPage {
     }
 
     showRegister() {
-        this.nav.setRoot(RegisterPage);
+        this.nav.push(RegisterPage);
     }
 
 

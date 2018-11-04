@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import { User } from '../../models/user.model';
 import { UserStorageService } from '../../providers/user-storage.service';
 import { UserService } from '../../providers/user.service';
+import { ToastService } from '../../providers/toast.service';
+import { Strings } from "../../utils/strings";
 @Component({
     selector: 'page-password',
     templateUrl: 'password.html'
@@ -10,7 +12,7 @@ import { UserService } from '../../providers/user.service';
 export class PasswordPage {
     idUser: string;
     credentiales = { password: '', newPassword: '', confirmPassword: '' };
-    constructor(public navCtr: NavController, public userStorageService: UserStorageService, public userService: UserService) {
+    constructor(public navCtr: NavController, public userStorageService: UserStorageService, public userService: UserService, private toastService: ToastService) {
         this.userStorageService.getIdUser().then(
             (user) => {
                 console.log(user);
@@ -21,7 +23,10 @@ export class PasswordPage {
     update() {
         const user:User = { idUser: this.idUser, password:this.credentiales.password, newPassword: this.credentiales.newPassword };
         this.userService.updatePassword(user).subscribe(
-            data => console.log(data)
+            data => {
+                console.log(data);
+                this.toastService.presentToast(Strings.MODIFICADO_CORRECTAMENTE);
+            }
         )
     }
 

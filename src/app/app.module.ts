@@ -40,14 +40,17 @@ import { UserService } from '../providers/user.service';
 import { UserStorageService } from '../providers/user-storage.service';
 import { AuthService } from '../providers/auth.service'; 
 import { PersonService } from '../providers/person.service';
+import { ToastService } from '../providers/toast.service';
 import { NotificationComponent } from '../components/notification/notification'; 
 import { RlTagInputModule } from 'angular2-tag-input';
 import { Camera } from '@ionic-native/camera';
 import { FileTransfer} from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
+import { DateFormatPipe } from '../pipes/date-format/date-format';
+import { UrlAvatarPipe } from '../pipes/url-avatar/url-avatar';
+import { Configs } from '../utils/configs';
 const config: SocketIoConfig = {
-  // url: 'http://zea-pfm.herokuapp.com',
-  url: 'http://192.168.0.15:9095',
+  url: Configs.SERVER,
   options: {
     'reconnection': true,
     'reconnectionDelay': 1000,
@@ -74,7 +77,9 @@ const config: SocketIoConfig = {
     PerfilPage,
     AvatarPage,
     PasswordPage,
-    NotificationComponent
+    NotificationComponent,
+    DateFormatPipe,
+    UrlAvatarPipe
   ],
   imports: [
     BrowserModule,
@@ -125,6 +130,7 @@ const config: SocketIoConfig = {
     UserStorageService,
     AuthService,
     PersonService,
+    ToastService,
     ContactService,
     HomeService
   ]

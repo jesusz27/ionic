@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, URLSearchParams, ResponseContentType } from '@angular/http';
 import { ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-
+import { Configs } from '../utils/configs';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
@@ -13,8 +13,7 @@ import { Error } from './error.model';
 @Injectable()
 export class HttpService {
 
-   // static API_END_POINT = 'http://zea-pfm.herokuapp.com';
-    static API_END_POINT = 'http://192.168.0.15:9095';
+    static API_END_POINT = Configs.SERVER;
     private token: string;
 
     private params: URLSearchParams;

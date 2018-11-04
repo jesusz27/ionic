@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ViewController } from 'ionic-angular';
 import { TrackSentPage } from '../track-sent/track-sent';
 import { TrackReceivedPage } from '../track-received/track-received';
 import { ContactPage } from '../contact/contact';
@@ -7,10 +7,12 @@ import { ContactPage } from '../contact/contact';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-
+  private data: any;
   tab2Root = TrackSentPage;
   tab3Root = TrackReceivedPage;
-  constructor(public nav:NavController) {
-
+  constructor(public nav:NavController,public viewCtrl: ViewController) {
+    this.data = {
+      viewCtrl: this.viewCtrl
+    }
   }
 }

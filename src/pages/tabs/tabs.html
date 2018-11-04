@@ -1,4 +1,4 @@
 <ion-tabs>
-  <ion-tab [root]="tab2Root" tabTitle="Track" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>
+  <ion-tab [tabsHideOnSubPages]="true" [root]="tab3Root" [rootParams]="data" tabTitle="Recibidos" tabIcon="md-return-left"></ion-tab>
+  <ion-tab [tabsHideOnSubPages]="true" [root]="tab2Root" [rootParams]="data" tabTitle="Enviados" tabIcon="md-return-right"></ion-tab>
 </ion-tabs>

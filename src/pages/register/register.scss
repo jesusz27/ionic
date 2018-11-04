@@ -1,4 +1,50 @@
-register-login {
- 
+page-register {
+  .register-content {
+    background:#3498db;
+    background-image: url('../assets/imgs/fondo.jpg');
+    .register-box{
+      box-shadow: none;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
+          padding: 20px 20px 0px 20px;
+          margin-top: 30px;
+    }
+    ion-row {
+      align-items: center;
+      text-align: center;
+    }
+
+    ion-item {
+        border-radius: 30px !important;
+        padding-left: 30px !important;
+        font-size: 0.9em;
+        margin-bottom: 10px;
+        border: 1px solid #ffffff;
+        border-bottom: 0px !important;
+        box-shadow: none !important;
+    }
+
+
+    .item-inner {
+     
+      box-shadow: none !important;
+    }
+
+    .submit-btn {
+      background: #3498db;
+      border-radius: 30px !important;
+      border: 1px solid #ffffff;
+    }
+
+    .register-btn {
+     background: #3498db;
+     border-radius: 30px !important;
+      color: #ffffff;
+    
+    }
+    .register-btn:hover{
+     background-color: orange !important;
+ }
+  }
    
   }

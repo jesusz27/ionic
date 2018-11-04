@@ -9,7 +9,8 @@ import { Location } from '../../models/location.model';
 @Injectable()
 export class HomeService {
     private idTrack: string = '';
-    subscribe: any;
+    private subscribe: any;
+    private listLocation: Location[];
     constructor(public locationTrackerService: LocationTrackerService, public socket: Socket, public mapService: MapService, public userStorageService: UserStorageService) {
        /* this.userStorageService.getIdUser()
             .then((idUser) => this.userStorageService.setIdUser(idUser))*/
@@ -17,6 +18,7 @@ export class HomeService {
     public startTracking() {
         this.idTrack = this.idTrackrand();
         this.locationTrackerService.initialize();
+        this.listLocation= [];
         let i: number = 1;
         this.subscribe = this.locationTrackerService.getLocationObservable().subscribe(
             data => {
@@ -28,7 +30,8 @@ export class HomeService {
                     console.log("response: " + response);
                 });
                 if(i == 1) { this.mapService.addMarker(location); i++;} 
-                this.mapService.drawPolyline(location);
+                this.listLocation.push(location);
+                this.mapService.drawAllPolyline(this.listLocation);
             }
         )
 

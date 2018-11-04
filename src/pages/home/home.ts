@@ -24,7 +24,7 @@ export class HomePage {
     this.socketService.initialize();
     this.oneSignalService.getNoticationObservable().subscribe(
       data => {
-        this.navCtrl.setRoot(ContactsDangerPage);
+        this.navCtrl.push(ContactsDangerPage);
       }
     )
     /*this.suscriber = this.socketService.getTrackHelp().subscribe( // Observador

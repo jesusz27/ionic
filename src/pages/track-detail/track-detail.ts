@@ -23,7 +23,7 @@ export class TrackDetailPage {
     }
 
     ionViewDidLoad() {
-        this.mapService.loadMap('map_canvas');
+        this.mapService.loadMap('map_canvas2');
     }
     ngOnDestroy() {
         this.subscriber.unsubscribe();

@@ -18,7 +18,7 @@ export class NotificationComponent {
   }
   notification(){
     console.log("notif");
-    this.navCtrl.setRoot(ContactsDangerPage)
+    this.navCtrl.push(ContactsDangerPage)
   }
 
 }

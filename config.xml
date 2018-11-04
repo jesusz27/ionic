@@ -100,11 +100,11 @@
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="26.1.0" />
         <variable name="API_KEY_FOR_IOS" value="(API_KEY_FOR_IOS)" />
     </plugin>
-    <plugin name="onesignal-cordova-plugin" spec="^2.4.1" />
+    <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
+    <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <allow-navigation href="http://192.168.0.17:8100" />
     <allow-navigation href="http://localhost:8100" />
     <allow-navigation href="http://192.168.0.15:8100" />
-    <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
-    <plugin name="cordova-plugin-file" spec="^6.0.1" />
+    <plugin name="onesignal-cordova-plugin" spec="^2.4.4" />
     <engine name="android" spec="7.0.0" />
 </widget>
