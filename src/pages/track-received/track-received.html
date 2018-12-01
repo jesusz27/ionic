@@ -14,7 +14,7 @@
         <ion-list-header>Lista</ion-list-header>
         <ion-item *ngFor="let item of listTrack" (click)="showTrack(item)">
           <ion-avatar item-start>
-            <img src="{{item.avatar | urlAvatar}}}">
+            <img src="{{item.codUser.avatar | urlAvatar}}">
           </ion-avatar>
           <h2>{{item.codUser.idUser}}</h2>
           <h3>{{item.fecha | dateFormat}}</h3>

@@ -14,7 +14,7 @@
         <ion-list-header>Lista</ion-list-header>
         <ion-item *ngFor="let item of listTracker" (click)="showTrack(item)">
           <ion-avatar item-start>
-            <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png">
+            <img src="{{item.codContact.avatar | urlAvatar}}">
           </ion-avatar>
           <h2>{{item.codContact.idUser}}</h2>
           <h3>{{item.fecha | dateFormat}}</h3>

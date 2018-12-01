@@ -41,6 +41,7 @@ export class ContactPage {
               return item.idUser != idUser;
             })
             this.autocompleteItems = this.temp;
+            console.log(this.autocompleteItems);
           })
       }
     )
@@ -53,6 +54,7 @@ export class ContactPage {
             for (let i = 0; i < data.length; i++) {
               this.contacts.push(data[i]);
             }
+            console.log(data);
           }
         )
       })

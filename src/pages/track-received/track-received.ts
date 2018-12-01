@@ -17,6 +17,7 @@ export class TrackReceivedPage {
             this.trackService.findByCodContact(idUser).subscribe(
                 data =>{
                     this.listTrack = data;
+                    console.log(this.listTrack);
                 } 
             )
         }

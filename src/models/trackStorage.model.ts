@@ -5,4 +5,5 @@ export interface TrackStorage {
     idTrack?: string;
     location?: Location[];
     idUser?: string;
+    avatar?: string;
 }

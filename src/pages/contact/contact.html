@@ -23,7 +23,7 @@
     <ion-list-header>Today</ion-list-header>
     <ion-item *ngFor="let item of autocompleteItems" (click)="selectItem(item)">
       <ion-avatar item-start>
-        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png">
+        <img src="{{item.avatar | urlAvatar}}">
       </ion-avatar>
       <h2>{{item.idUser}}</h2>
       <h3>Don't Know What To Do!</h3>
@@ -36,7 +36,7 @@
       <ion-row *ngFor="let item of contacts" (click)="presentActionSheet(item)">
         <ion-item *ngIf="item.status != 'SELECTED'">
           <ion-avatar item-start>
-            <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png">
+            <img src="{{item.avatar | urlAvatar}}">
           </ion-avatar>
           <h2>{{item.idUser}}</h2>
           <h3>Don't Know What To Do!</h3>
@@ -50,7 +50,7 @@
     <ion-row *ngFor="let item of contacts" (click)="presentActionSheet(item)">
       <ion-item *ngIf="item.status == 'SELECTED'">
         <ion-avatar item-start>
-          <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png">
+          <img src="{{item.avatar | urlAvatar}}">
         </ion-avatar>
         <h2>{{item.idUser}}</h2>
         <h3>Don't Know What To Do!</h3>

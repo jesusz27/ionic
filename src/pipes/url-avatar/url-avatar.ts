@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Configs } from '../../utils/configs'; 
+import { Configs } from '../../utils/configs';
 /**
  * Generated class for the UrlAvatarPipe pipe.
  *
@@ -13,6 +13,7 @@ export class UrlAvatarPipe implements PipeTransform {
    * Takes a value and makes it lowercase.
    */
   transform(value: string, ...args) {
-    return value.toLowerCase();
+    console.log("ruta: " + Configs.SERVER + '/' + value);
+    return Configs.SERVER + '/' + value;
   }
 }

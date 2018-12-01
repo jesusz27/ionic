@@ -2,5 +2,6 @@ export interface ContactSelected {
     id: string;
     idUser: string;
     email: string;
-    status:string;
+    status: string;
+    avatar: string;
 }

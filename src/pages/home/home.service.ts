@@ -11,27 +11,34 @@ export class HomeService {
     private idTrack: string = '';
     private subscribe: any;
     private listLocation: Location[];
+    private idUser: string;
     constructor(public locationTrackerService: LocationTrackerService, public socket: Socket, public mapService: MapService, public userStorageService: UserStorageService) {
-       /* this.userStorageService.getIdUser()
-            .then((idUser) => this.userStorageService.setIdUser(idUser))*/
+        /* this.userStorageService.getIdUser()
+             .then((idUser) => this.userStorageService.setIdUser(idUser))*/
+        this.userStorageService.getIdUser().then(
+            idUser => this.idUser = idUser
+        )
     }
+
     public startTracking() {
         this.idTrack = this.idTrackrand();
         this.locationTrackerService.initialize();
-        this.listLocation= [];
+        this.listLocation = [];
         let i: number = 1;
         this.subscribe = this.locationTrackerService.getLocationObservable().subscribe(
             data => {
-                const location: Location = data;
-                location.idUser = this.userStorageService.idUser;
-                location.idTrack = this.idTrack;
-                console.log(location);
-                this.socket.emit('probar', JSON.stringify(location), (response) => {
-                    console.log("response: " + response);
-                });
-                if(i == 1) { this.mapService.addMarker(location); i++;} 
-                this.listLocation.push(location);
-                this.mapService.drawAllPolyline(this.listLocation);
+                if (this.idUser) {
+                    const location: Location = data;
+                    location.idUser = this.idUser;
+                    location.idTrack = this.idTrack;
+                    console.log(location);
+                    this.socket.emit('probar', JSON.stringify(location), (response) => {
+                        console.log("response: " + response);
+                    });
+                    if (i == 1) { this.mapService.addMarker(location); i++; }
+                    this.listLocation.push(location);
+                    this.mapService.drawAllPolyline(this.listLocation);
+                }
             }
         )
 
