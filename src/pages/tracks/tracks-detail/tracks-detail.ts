@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { TrackDetailService } from '../../providers/track-detail.service';
-import { Track } from '../../models/track.model';
-import { MapService } from "../../providers/map.service";
-import { Location } from "../../models/location.model";
+import { TrackDetailService } from '../../../services/services-rest/track-detail.service';
+import { Track } from '../../../models/track.model';
+import { MapService } from "../../../services/map.service";
+import { Location } from "../../../models/location.model";
 
 @Component({
-    selector: 'page-track-detail',
-    templateUrl: 'track-detail.html'
+    selector: 'page-tracks-detail',
+    templateUrl: 'tracks-detail.html'
 })
-export class TrackDetailPage {
+export class TracksDetailPage {
     private listTracker: Track;
     private subscriber: any;
     constructor(public nav: NavController, public navParams: NavParams, public trackDetailService: TrackDetailService, public mapService: MapService) {

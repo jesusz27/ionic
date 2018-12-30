@@ -6,13 +6,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 
-import { TabsPage } from '../pages/tabs/tabs';
-import { ContactPage } from '../pages/contact/contact';
+import { TracksPage } from '../pages/tracks/tracks';
+import { ContactsPage } from '../pages/contacts/contacts';
 import { PerfilPage} from '../pages/perfil/perfil';
 import { ConfigPage } from '../pages/config/config';
 import { LoginPage } from '../pages/login/login';
 
-import { UserStorageService } from '../providers/user-storage.service';
+import { UserStorageService } from '../services/user-storage.service';
 
 @Component({
   templateUrl: 'app.html'
@@ -28,8 +28,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Contactos', component: ContactPage, icon: 'contacts' },
-      { title: 'Recorrios', component: TabsPage, icon: 'md-send' },
+      { title: 'Contactos', component: ContactsPage, icon: 'contacts' },
+      { title: 'Recorrios', component: TracksPage, icon: 'md-send' },
       { title: 'Perfil', component: PerfilPage, icon: 'contact' },
       { title: 'Ajustes', component: ConfigPage, icon: 'md-settings' }
     ];

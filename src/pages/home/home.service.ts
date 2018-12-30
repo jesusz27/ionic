@@ -1,10 +1,10 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { LocationTrackerService } from "../../providers/location-tracker"
+import { LocationTrackerService } from "../../services/location-tracker"
 import { Socket } from 'ng-socket-io';
-import { MapService } from "../../providers/map.service";
-import { UserStorageService } from "../../providers/user-storage.service"
+import { MapService } from "../../services/map.service";
+import { UserStorageService } from "../../services/user-storage.service"
 import { Location } from '../../models/location.model';
 @Injectable()
 export class HomeService {

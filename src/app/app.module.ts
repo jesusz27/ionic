@@ -8,39 +8,39 @@ import { MyApp } from './app.component';
 import { ContactsDangerPage } from '../pages/contacts-danger/contacts-danger';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
-import { ContactPage } from '../pages/contact/contact';
+import { ContactsPage } from '../pages/contacts/contacts';
 import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
-import { TrackSentPage } from '../pages/track-sent/track-sent';
-import { TrackDetailPage } from '../pages/track-detail/track-detail'
-import { TrackReceivedPage } from '../pages/track-received/track-received';
-import { ContactsDangerDetailPage } from '../pages/contacts-danger-detail/contacts-danger-detail'
+import { TracksPage } from '../pages/tracks/tracks';
+import { TracksSentPage } from '../pages/tracks/tracks-sent/tracks-sent';
+import { TracksDetailPage } from '../pages/tracks/tracks-detail/tracks-detail'
+import { TracksReceivedPage } from '../pages/tracks/tracks-received/tracks-received';
+import { ContactsDangerDetailPage } from '../pages/contacts-danger/contacts-danger-detail/contacts-danger-detail'
 import { ConfigPage } from '../pages/config/config';
 import { PerfilPage } from '../pages/perfil/perfil';
-import { AvatarPage } from '../pages/avatar/avatar'; 
-import { PasswordPage } from '../pages/password/password';
+import { AvatarPage } from '../pages/config/avatar/avatar'; 
+import { PasswordPage } from '../pages/config/password/password';
 import { HttpService } from '../core/http.service';
 import { OneSignal } from '@ionic-native/onesignal';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
-import { LocationTrackerService } from '../providers/location-tracker';
-import { OneSignalService } from '../providers/one-signal.service';
+import { LocationTrackerService } from '../services/location-tracker';
+import { OneSignalService } from '../services/one-signal.service';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 import { HomeService } from '../pages/home/home.service';
 import { GoogleMaps } from '@ionic-native/google-maps';
-import { MapService } from '../providers/map.service';
-import { ContactService } from '../providers/contact.service';
-import { SocketService } from '../providers/socket.service';
-import { TrackService } from '../providers/track.service';
-import { TrackStorageService } from '../providers/track-storage.service';
-import { TrackDetailService } from '../providers/track-detail.service';
-import { UserService } from '../providers/user.service';
-import { UserStorageService } from '../providers/user-storage.service';
-import { AuthService } from '../providers/auth.service'; 
-import { PersonService } from '../providers/person.service';
-import { ToastService } from '../providers/toast.service';
+import { MapService } from '../services/map.service';
+import { ContactService } from '../services/services-rest/contact.service';
+import { SocketService } from '../services/socket.service';
+import { TrackService } from '../services/services-rest/track.service';
+import { TrackStorageService } from '../services/track-storage.service';
+import { TrackDetailService } from '../services/services-rest/track-detail.service';
+import { UserService } from '../services/services-rest/user.service';
+import { UserStorageService } from '../services/user-storage.service';
+import { AuthService } from '../services/services-rest/auth.service'; 
+import { PersonService } from '../services/services-rest/person.service';
+import { ToastService } from '../services/toast.service';
 import { NotificationComponent } from '../components/notification/notification'; 
 import { RlTagInputModule } from 'angular2-tag-input';
 import { Camera } from '@ionic-native/camera';
@@ -64,14 +64,14 @@ const config: SocketIoConfig = {
   declarations: [
     MyApp,
     ContactsDangerPage,
-    ContactPage,
+    ContactsPage,
     HomePage,
     LoginPage,
     RegisterPage,
-    TabsPage,
-    TrackSentPage,
-    TrackDetailPage,
-    TrackReceivedPage,
+    TracksPage,
+    TracksSentPage,
+    TracksDetailPage,
+    TracksReceivedPage,
     ContactsDangerDetailPage,
     ConfigPage,
     PerfilPage,
@@ -93,14 +93,14 @@ const config: SocketIoConfig = {
   entryComponents: [
     MyApp,
     ContactsDangerPage,
-    ContactPage,
+    ContactsPage,
     HomePage,
     LoginPage,
     RegisterPage,
-    TabsPage,
-    TrackSentPage,
-    TrackDetailPage,
-    TrackReceivedPage,
+    TracksPage,
+    TracksSentPage,
+    TracksDetailPage,
+    TracksReceivedPage,
     ContactsDangerDetailPage,
     ConfigPage,
     PerfilPage,

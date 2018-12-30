@@ -3,5 +3,10 @@ export enum Strings {
   SELECCIONAR_IMAGEN = "Seleccionar imagen",
   SUBIENDO = "Subiendo...",
   CARGADO_INCORRECTAMENTE = "No se cargo la imagen",
-  MODIFICADO_CORRECTAMENTE = "Se modifico correctamente"
+  MODIFICADO_CORRECTAMENTE = "Se modifico correctamente",
+  CONTACTO_ACTUALIZADO = "Contacto actualizado",
+  CONTACTO_ELIMINADO = "Contacto eliminado",
+  CONTACTO_AGREGADO = "Contacto agregado",
+  OPERACION_EXITOSA = "operación exitosa",
+  AGREGAR_PERFIL = "Agregar información de perfil"
 }

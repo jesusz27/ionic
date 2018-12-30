@@ -3,8 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { Location } from '../models/location.model';
 
 import { TrackStorage } from '../models/trackStorage.model';
-import { TrackDetailService } from './track-detail.service';
-import { UserService } from './user.service';
+import { TrackDetailService } from './services-rest/track-detail.service';
+import { UserService } from './services-rest/user.service';
 import { User } from '../models/user.model'; 
 import { Subject } from 'rxjs/Subject';
 

@@ -1,8 +1,8 @@
 
 import { Injectable } from '@angular/core';
-import { HttpService } from '../core/http.service'
+import { HttpService } from '../../core/http.service'
 import { Observable } from 'rxjs/Observable';
-import { User } from '../models/user.model';
+import { User } from '../../models/user.model';
 
 @Injectable()
 export class AuthService {

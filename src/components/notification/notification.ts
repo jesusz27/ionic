@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TrackStorageService } from "../../providers/track-storage.service";
+import { TrackStorageService } from "../../services/track-storage.service";
 import { NavController } from 'ionic-angular';
 import { ContactsDangerPage } from "../../pages/contacts-danger/contacts-danger"
 

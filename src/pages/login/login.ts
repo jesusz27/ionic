@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { User } from '../../models/user.model';
-import { AuthService } from '../../providers/auth.service'
-import { UserStorageService } from '../../providers/user-storage.service'
+import { AuthService } from '../../services/services-rest/auth.service'
+import { UserStorageService } from '../../services/user-storage.service'
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
 @Component({

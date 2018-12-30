@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { PasswordPage } from '../password/password';
-import { AvatarPage } from '../avatar/avatar'; 
+import { PasswordPage } from './password/password';
+import { AvatarPage } from './avatar/avatar'; 
 @Component({
     selector: 'page-config',
     templateUrl: 'config.html'

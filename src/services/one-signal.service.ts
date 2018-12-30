@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-import { UserService} from "./user.service";
+import { UserService} from "./services-rest/user.service";
 import { User } from "../models/user.model";
 import { UserStorageService } from "./user-storage.service";
 @Injectable()

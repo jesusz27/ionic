@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HomeService } from "./home.service";
-import { SocketService } from "../../providers/socket.service";
+import { SocketService } from "../../services/socket.service";
 import { User } from '../../models/user.model';
 import { Location } from '../../models/location.model';
-import { OneSignalService } from '../../providers/one-signal.service';
+import { OneSignalService } from '../../services/one-signal.service';
 import { ContactsDangerPage } from "../contacts-danger/contacts-danger"
 
 @Component({

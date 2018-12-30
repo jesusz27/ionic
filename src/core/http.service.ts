@@ -30,29 +30,29 @@ export class HttpService {
         this.prepareToken();
     }
 
-    private prepareToken(){
+    private prepareToken() {
         this.storage.get('token').then(
             data => {
-              if (data != undefined) {
-                this.token = data;
-              } else {
-                this.token = undefined;
-              }
-            });  
+                if (data != undefined) {
+                    this.token = data;
+                } else {
+                    this.token = undefined;
+                }
+            });
     }
 
-    public setToken(token: string){
+    public setToken(token: string) {
         this.storage.set('token', token).then(
             data => {
                 this.token = token;
-            }); 
+            });
     }
 
-    public getToken(){
+    public getToken() {
         return this.token;
     }
 
-    public removeToken(){
+    public removeToken() {
         this.token = null;
         this.storage.remove('token');
     }
@@ -118,6 +118,10 @@ export class HttpService {
             this.presentToast(this.successfulNotification);
             this.successfulNotification = undefined;
         }
+        const token = response.headers.get('token');
+        if(token){
+            this.setToken(token);
+        }
         const contentType = response.headers.get('content-type');
         if (contentType) {
             if (contentType.indexOf('application/json') !== -1) {
@@ -137,10 +141,13 @@ export class HttpService {
                 httpError: response.status, exception: response.json().exception,
                 message: response.json().message, path: response.json().path
             };
-            this.presentToast(response.toString());
+            console.log(response.toString());
+            console.log("aaa");
+            console.log(error);
+            this.presentToast(response.status.toString() + ' ' + response.json().message);
             return Observable.throw(error);
         } catch (e) {
-            this.presentToast(response.toString());
+            this.presentToast(response.status.toString());
             return Observable.throw(response);
         }
     }
@@ -177,8 +184,8 @@ export class HttpService {
         return this;
     }
 
-    authToken(): HttpService {     
-        this.headers.append('token', this.token);
+    authToken(): HttpService {
+        this.headers.append('authorization', this.token);
         return this;
     }
 

@@ -3,12 +3,12 @@ import { NavController, LoadingController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-import { ToastService } from '../../providers/toast.service';
-import { UserStorageService } from '../../providers/user-storage.service';
+import { ToastService } from '../../../services/toast.service';
+import { UserStorageService } from '../../../services/user-storage.service';
 import { File } from '@ionic-native/file';
-import { User } from "../../models/user.model";
-import { Strings } from "../../utils/strings";
-import { Configs } from "../../utils/configs";
+import { User } from "../../../models/user.model";
+import { Strings } from "../../../utils/strings";
+import { Configs } from "../../../utils/configs";
 @Component({
     selector: 'page-avatar',
     templateUrl: 'avatar.html'
@@ -23,7 +23,7 @@ export class AvatarPage {
     }
     openGallery() {
         const options: CameraOptions = {
-            quality: 100,
+            quality: 70,
             destinationType: this.camera.DestinationType.DATA_URL,
             encodingType: this.camera.EncodingType.JPEG,
             mediaType: this.camera.MediaType.PICTURE,
@@ -48,11 +48,11 @@ export class AvatarPage {
                 fileKey: 'avatar',
                 fileName: "myImage_" + random + ".jpg",
                 chunkedMode: false,
-                httpMethod: 'post',
+                httpMethod: 'put',
                 mimeType: "image/jpeg",
                 headers: {},
             }
-            fileTransfer.upload(this.base64Image, Configs.SERVER+'/user/avatar/' + this.idUser, options)
+            fileTransfer.upload(this.base64Image, Configs.SERVER + '/users/' + this.idUser + '/avatar', options)
                 .then((data) => {
                     console.log(data.response);
                     const user: User = JSON.parse(data.response);
@@ -64,7 +64,7 @@ export class AvatarPage {
                     this.toastService.presentToast(Strings.CARGADO_INCORRECTAMENTE);
                     loader.dismiss();
                 });
-        }else{
+        } else {
             this.toastService.presentToast(Strings.SELECCIONAR_IMAGEN);
         }
     }

@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpService } from '../core/http.service'
+import { HttpService } from '../../core/http.service'
 @Injectable()
 export class TrackService {
-    static END_POINT = '/track';
+    static END_POINT = '/tracks';
 
     constructor(private httpService: HttpService) {
     }
 
     findByCodUser(idUser: string): Observable<any> {
-        return this.httpService.get(TrackService.END_POINT + '/user/' + idUser);
+        return this.httpService.authToken().get(TrackService.END_POINT + '/user/' + idUser);
     }
     findByCodContact(idUser: string): Observable<any> {
-        return this.httpService.get(TrackService.END_POINT + '/contact/' + idUser);
+        return this.httpService.authToken().get(TrackService.END_POINT + '/contact/' + idUser);
     }
 }

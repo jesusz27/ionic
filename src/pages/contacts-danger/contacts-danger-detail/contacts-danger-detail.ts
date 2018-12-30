@@ -1,15 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { TrackStorage } from '../../models/trackStorage.model';
-import { TrackStorageService } from '../../providers/track-storage.service';
-import { MapService } from "../../providers/map.service";
+import { TrackStorage } from '../../../models/trackStorage.model';
+import { TrackStorageService } from '../../../services/track-storage.service';
+import { MapService } from "../../../services/map.service";
 import { Subject } from 'rxjs/Subject';
-/**
- * Generated class for the ContactsDangerDetailPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -22,8 +16,7 @@ export class ContactsDangerDetailPage {
   trackCurrent: TrackStorage;
   suscriber: any;
   change: number;
-  // observable: Subject<TrackStorage> = new Subject();
-
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, public trackStorageService: TrackStorageService, public mapService: MapService) {
     this.idTracks = this.navParams.get("param");
     console.log("hol soy contact danger detail");

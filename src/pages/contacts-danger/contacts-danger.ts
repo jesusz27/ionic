@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { SocketService } from "../../providers/socket.service";
-import { TrackStorageService } from "../../providers/track-storage.service";
+import { SocketService } from "../../services/socket.service";
+import { TrackStorageService } from "../../services/track-storage.service";
 import { TrackStorage } from "../../models/trackStorage.model"
-import { ContactsDangerDetailPage } from '../contacts-danger-detail/contacts-danger-detail';
+import { ContactsDangerDetailPage } from './contacts-danger-detail/contacts-danger-detail';
 
 @Component({
   selector: 'page-contacts-danger',

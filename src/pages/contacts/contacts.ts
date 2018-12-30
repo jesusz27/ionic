@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
 import { NavController, ActionSheetController } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
-import { UserService } from '../../providers/user.service';
-import { ContactService } from '../../providers/contact.service';
+import { UserService } from '../../services/services-rest/user.service';
+import { ContactService } from '../../services/services-rest/contact.service';
 import { User } from '../../models/user.model';
 import { Observable } from 'rxjs/Observable';
-import { UserStorageService } from '../../providers/user-storage.service';
+import { UserStorageService } from '../../services/user-storage.service';
 import 'rxjs/add/operator/debounceTime';
 import { Contact } from '../../models/contact.model';
 import { ContactSelected } from '../../models/contactSelected.model';
+import { Strings } from "../../utils/strings";
+import { ToastService } from '../../services/toast.service';
 @Component({
-  selector: 'page-contact',
-  templateUrl: 'contact.html'
+  selector: 'page-contacts',
+  templateUrl: 'contacts.html'
 })
-export class ContactPage {
+export class ContactsPage {
 
   autocompleteItems: User[] = [];
   temp: any;
@@ -23,7 +25,7 @@ export class ContactPage {
   searching: any = false;
   contacts: ContactSelected[] = [];
 
-  constructor(public navCtrl: NavController, public userService: UserService, public contactService: ContactService, public userStorageService: UserStorageService, public actionSheetCtrl: ActionSheetController) {
+  constructor(public navCtrl: NavController, public userService: UserService, public contactService: ContactService, public userStorageService: UserStorageService, public actionSheetCtrl: ActionSheetController, private toastService:ToastService) {
     this.searchControl = new FormControl();
     this.allUser();
     this.findContacts();
@@ -78,6 +80,7 @@ export class ContactPage {
         this.contactService.create(contact).subscribe(
           data => {
             this.contacts.push(data);
+            this.toastService.presentToast(Strings.CONTACTO_AGREGADO);
             console.log(this.contacts)
           }
         )
@@ -112,6 +115,7 @@ export class ContactPage {
               data => {
                 console.log("update");
                 console.log(this.contacts);
+                this.toastService.presentToast(Strings.CONTACTO_ACTUALIZADO);
                 for (let i = 0; i < this.contacts.length; i++) {
                   if (this.contacts[i].id == data.id) {
                     this.contacts[i].status = status;
@@ -128,6 +132,7 @@ export class ContactPage {
           handler: () => {
             this.contactService.delete(contactSelect.id).subscribe(
               data => {
+                this.toastService.presentToast(Strings.CONTACTO_ELIMINADO);
                 for (let i = 0; i < this.contacts.length; i++) {
                   if (this.contacts[i].id == contactSelect.id) {
                     this.contacts.splice(i, 1);
