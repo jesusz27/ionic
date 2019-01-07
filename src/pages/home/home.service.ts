@@ -32,7 +32,7 @@ export class HomeService {
                     location.idUser = this.idUser;
                     location.idTrack = this.idTrack;
                     console.log(location);
-                    this.socket.emit('probar', JSON.stringify(location), (response) => {
+                    this.socket.emit('startSendingAlerts', JSON.stringify(location), (response) => {
                         console.log("response: " + response);
                     });
                     if (i == 1) { this.mapService.addMarker(location); i++; }

@@ -8,8 +8,8 @@ import { UserStorageService } from './user-storage.service'
 @Injectable()
 export class SocketService {
 
-  static LOCATION_EMIT = 'probar';
-  static LOCATION_ON = 'receptor';
+  static LOCATION_EMIT = 'startSendingAlerts';
+  static LOCATION_ON = 'receptorAlerts';
   static ADD_USER = 'addUserSocket';
  
   constructor(public socket: Socket, public trackStorageService: TrackStorageService, public userStorageService: UserStorageService) {

@@ -16,24 +16,27 @@
 </ion-header>
 
 <ion-content>
-  <ion-list-header>CONFIGURACIÓN DEL PERFIL</ion-list-header>
+  <ion-list-header>COMPLETAR DATOS DE PERFIL</ion-list-header>
   <div class="register-box">
     <ion-row>
       <ion-col>
         <ion-list inset>
-
           <ion-item>
+            <ion-icon name="contact" item-start></ion-icon>
             <ion-input type="text" placeholder="Nombre" name="firstName" [(ngModel)]="person.firstName" required></ion-input>
           </ion-item>
 
           <ion-item>
+            <ion-icon name="contacts" item-start></ion-icon>
             <ion-input type="text" placeholder="Apellido" name="lastName" [(ngModel)]="person.lastName" required></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input type="text" placeholder="Phone" name="phone" [(ngModel)]="person.phone" required></ion-input>
+            <ion-icon name="call" item-start></ion-icon>
+            <ion-input type="text" placeholder="Telefono" name="phone" [(ngModel)]="person.phone" required></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label>Date</ion-label>
+            <ion-icon name="calendar" item-start></ion-icon>
+            <ion-label>Fecha de Nacimiento</ion-label>
             <ion-datetime [(ngModel)]="person.birthdate"></ion-datetime>
           </ion-item>
 
@@ -41,11 +44,11 @@
       </ion-col>
     </ion-row>
 
-    <ion-row >
-      <ion-col  *ngIf="toogle" class="signup-col" >
+    <ion-row>
+      <ion-col *ngIf="toogle" class="signup-col">
         <button ion-button class="submit-btn" full (click)="save()">Guardar</button>
       </ion-col>
-      <ion-col *ngIf="!toogle" class="signup-col" >
+      <ion-col *ngIf="!toogle" class="signup-col">
         <button ion-button class="submit-btn" full (click)="update()">Actualizar</button>
       </ion-col>
     </ion-row>

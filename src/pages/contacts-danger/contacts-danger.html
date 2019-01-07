@@ -9,15 +9,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-totoro.png">
-      </ion-avatar>
-      <h2>My Neighbor Totoro</h2>
-      <p>Hayao Miyazaki • 1988</p>
-      <button ion-button clear item-end>View</button>
-    </ion-item>
-
+      <ion-list-header>USUARIOS EN PELIGRO</ion-list-header>
     <ion-item *ngFor="let item of trackStorageList">
       <ion-thumbnail item-start>
         <img *ngIf="item.avatar" src="{{item.avatar | urlAvatar}}">

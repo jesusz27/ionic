@@ -11,7 +11,6 @@ export class UserStorageService {
     }
     setIdUser(idUser: string) {
         this.storage.set('idUser', idUser);
-        console.log("ingreso user storage");
         this.idUser = idUser;
     }
 
@@ -21,10 +20,10 @@ export class UserStorageService {
                 return idUser;
             });
     }
-    setAvatar(avatar: string){
+    setAvatar(avatar: string) {
         this.avatar = avatar;
     }
-    getAvatar():string{
+    getAvatar(): string {
         return this.avatar;
     }
     removeIdUser() {

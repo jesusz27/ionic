@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
+    <ion-searchbar placeholder="Buscar" [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
     <ion-buttons end>
       <notification></notification>
     </ion-buttons>
@@ -20,40 +20,37 @@
   </div>
 
   <ion-list *ngIf="toggle">
-    <ion-list-header>Today</ion-list-header>
+    <ion-list-header>BUSQUEDA</ion-list-header>
     <ion-item *ngFor="let item of autocompleteItems" (click)="selectItem(item)">
       <ion-avatar item-start>
         <img src="{{item.avatar | urlAvatar}}">
       </ion-avatar>
       <h2>{{item.idUser}}</h2>
-      <h3>Don't Know What To Do!</h3>
       <p>{{item.email}}</p>
     </ion-item>
   </ion-list>
 
   <ion-list>
-      <ion-list-header>Contactos</ion-list-header>
+      <ion-list-header>CONTACTOS</ion-list-header>
       <ion-row *ngFor="let item of contacts" (click)="presentActionSheet(item)">
         <ion-item *ngIf="item.status != 'SELECTED'">
           <ion-avatar item-start>
             <img src="{{item.avatar | urlAvatar}}">
           </ion-avatar>
           <h2>{{item.idUser}}</h2>
-          <h3>Don't Know What To Do!</h3>
           <p>{{item.email}}</p>
   
         </ion-item>
       </ion-row>
     </ion-list>
   <ion-list>
-    <ion-list-header>Elegidos</ion-list-header>
+    <ion-list-header>CONTACTOS ELEGIDOS</ion-list-header>
     <ion-row *ngFor="let item of contacts" (click)="presentActionSheet(item)">
       <ion-item *ngIf="item.status == 'SELECTED'">
         <ion-avatar item-start>
           <img src="{{item.avatar | urlAvatar}}">
         </ion-avatar>
         <h2>{{item.idUser}}</h2>
-        <h3>Don't Know What To Do!</h3>
         <p>{{item.email}}</p>
 
       </ion-item>

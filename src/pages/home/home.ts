@@ -27,15 +27,6 @@ export class HomePage {
         this.navCtrl.push(ContactsDangerPage);
       }
     )
-    /*this.suscriber = this.socketService.getTrackHelp().subscribe( // Observador
-      data => {
-        this.location = JSON.parse(data);
-        console.log(this.location);
-        locationTrackerService.drawPolyline(this.location);
-
-      },
-      error => alert('Observer1, error code: ' + error)
-    );*/
   }
   startStop() {
     if (this.status) {

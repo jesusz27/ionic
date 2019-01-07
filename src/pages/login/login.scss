@@ -7,7 +7,12 @@ page-login {
         padding-top: 50px;
         padding-bottom: 20px;
       }
-   
+      .logo {
+        background-image: url('../assets/imgs/logoPrincipal.png');
+        width: 67px;
+        max-width: 67px;
+        height: 67px;
+      }
       .login-box {
         		box-shadow: none;
 		background: rgba(0, 0, 0, 0.5);

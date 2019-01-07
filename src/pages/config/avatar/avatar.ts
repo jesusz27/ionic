@@ -5,6 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { ToastService } from '../../../services/toast.service';
 import { UserStorageService } from '../../../services/user-storage.service';
+import {HttpService } from '../../../core/http.service'; 
 import { File } from '@ionic-native/file';
 import { User } from "../../../models/user.model";
 import { Strings } from "../../../utils/strings";
@@ -16,7 +17,7 @@ import { Configs } from "../../../utils/configs";
 export class AvatarPage {
     base64Image: any;
     idUser: string;
-    constructor(private navCtr: NavController, private camera: Camera, private sanitizer: DomSanitizer, private transfer: FileTransfer, private file: File, private loadingCtrl: LoadingController, private userStorageService: UserStorageService, private toastService: ToastService) {
+    constructor(private navCtr: NavController, private camera: Camera, private sanitizer: DomSanitizer, private transfer: FileTransfer, private file: File, private loadingCtrl: LoadingController, private userStorageService: UserStorageService, private toastService: ToastService, private httpService:HttpService) {
         this.userStorageService.getIdUser().then(
             (idUser) => this.idUser = idUser
         )
@@ -50,7 +51,7 @@ export class AvatarPage {
                 chunkedMode: false,
                 httpMethod: 'put',
                 mimeType: "image/jpeg",
-                headers: {},
+                headers: {'authorization': this.httpService.getToken() },
             }
             fileTransfer.upload(this.base64Image, Configs.SERVER + '/users/' + this.idUser + '/avatar', options)
                 .then((data) => {
@@ -65,7 +66,7 @@ export class AvatarPage {
                     loader.dismiss();
                 });
         } else {
-            this.toastService.presentToast(Strings.SELECCIONAR_IMAGEN);
+            this.toastService.presentToast(Strings.AGREGAR_IMAGEN);
         }
     }
 }
