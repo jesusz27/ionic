@@ -11,13 +11,12 @@ export class NotificationComponent {
 
   countTrack: number = 0;
 
-  constructor(private trackStorageService: TrackStorageService, public navCtrl: NavController) {
+  constructor(private trackStorageService: TrackStorageService, private navCtrl: NavController) {
     this.trackStorageService.getObservableTrack().subscribe(
       data => this.countTrack = data.length
     )
   }
   notification(){
-    console.log("notif");
     this.navCtrl.push(ContactsDangerPage)
   }
 

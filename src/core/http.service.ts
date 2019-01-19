@@ -141,9 +141,6 @@ export class HttpService {
                 httpError: response.status, exception: response.json().exception,
                 message: response.json().message, path: response.json().path
             };
-            console.log(response.toString());
-            console.log("aaa");
-            console.log(error);
             this.presentToast(response.status.toString() + ' ' + response.json().message);
             return Observable.throw(error);
         } catch (e) {
@@ -160,15 +157,6 @@ export class HttpService {
         toast.present();
     }
 
-    login(email: string, password: string, endPoint: string): Observable<any> {
-        return this.authBasic(email, password).post(endPoint).map(
-            token => {
-                // TODO
-            },
-            error => this.removeToken()
-        );
-    }
-
     param(key: string, value: string): HttpService {
         this.params.append(key, value);
         return this;
@@ -176,11 +164,6 @@ export class HttpService {
 
     header(key: string, value: string): HttpService {
         this.headers.append(key, value);
-        return this;
-    }
-
-    authBasic(email: string, password: string): HttpService {
-        this.headers.append('Authorization', 'Basic ' + btoa(email + ':' + password));
         return this;
     }
 

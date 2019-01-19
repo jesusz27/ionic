@@ -11,12 +11,13 @@ import { Contact } from '../../models/contact.model';
 import { ContactSelected } from '../../models/contactSelected.model';
 import { Strings } from "../../utils/strings";
 import { ToastService } from '../../services/toast.service';
+
 @Component({
   selector: 'page-contacts',
   templateUrl: 'contacts.html'
 })
-export class ContactsPage {
 
+export class ContactsPage {
   autocompleteItems: User[] = [];
   temp: any;
   searchControl: FormControl;
@@ -25,7 +26,7 @@ export class ContactsPage {
   searching: any = false;
   contacts: ContactSelected[] = [];
 
-  constructor(public navCtrl: NavController, public userService: UserService, public contactService: ContactService, public userStorageService: UserStorageService, public actionSheetCtrl: ActionSheetController, private toastService:ToastService) {
+  constructor(public navCtrl: NavController, public userService: UserService, public contactService: ContactService, public userStorageService: UserStorageService, public actionSheetCtrl: ActionSheetController, public toastService: ToastService) {
     this.searchControl = new FormControl();
     this.allUser();
     this.findContacts();
@@ -34,6 +35,7 @@ export class ContactsPage {
       this.filterItems();
     });
   }
+
   allUser() {
     this.userService.findAll().subscribe(
       data => {
@@ -43,11 +45,11 @@ export class ContactsPage {
               return item.idUser != idUser;
             })
             this.autocompleteItems = this.temp;
-            console.log(this.autocompleteItems);
           })
       }
     )
   }
+
   findContacts() {
     this.userStorageService.getIdUser()
       .then((idUser) => {
@@ -56,11 +58,11 @@ export class ContactsPage {
             for (let i = 0; i < data.length; i++) {
               this.contacts.push(data[i]);
             }
-            console.log(data);
           }
         )
       })
   }
+
   onSearchInput() {
     this.searching = true;
     if (this.temp && this.contacts) {
@@ -81,13 +83,13 @@ export class ContactsPage {
           data => {
             this.contacts.push(data);
             this.toastService.presentToast(Strings.CONTACTO_AGREGADO);
-            console.log(this.contacts)
           }
         )
       }
       )
 
   }
+
   filterItems() {
     this.toggle = true;
     if (!this.searchTerm) {
@@ -98,8 +100,8 @@ export class ContactsPage {
       return ((item.idUser + item.email).toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1);
     })
   }
+
   presentActionSheet(contactSelect: ContactSelected) {
-    console.log("presionado");
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Opciones',
       buttons: [
@@ -113,8 +115,6 @@ export class ContactsPage {
             contactSelect.status == "SELECTED" ? status = 'UNSELECTED' : status = 'SELECTED';
             this.contactService.update(contactSelect.id, status).subscribe(
               data => {
-                console.log("update");
-                console.log(this.contacts);
                 this.toastService.presentToast(Strings.CONTACTO_ACTUALIZADO);
                 for (let i = 0; i < this.contacts.length; i++) {
                   if (this.contacts[i].id == data.id) {
@@ -146,7 +146,6 @@ export class ContactsPage {
           text: 'Cancelar',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
           }
         }
       ]
@@ -154,5 +153,4 @@ export class ContactsPage {
 
     actionSheet.present();
   }
-
 }

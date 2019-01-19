@@ -9,16 +9,10 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
-
-
-
-
   <div *ngIf="searching" class="spinner-container">
     <ion-spinner></ion-spinner>
   </div>
-
   <ion-list *ngIf="toggle">
     <ion-list-header>BUSQUEDA</ion-list-header>
     <ion-item *ngFor="let item of autocompleteItems" (click)="selectItem(item)">
@@ -29,20 +23,18 @@
       <p>{{item.email}}</p>
     </ion-item>
   </ion-list>
-
   <ion-list>
-      <ion-list-header>CONTACTOS</ion-list-header>
-      <ion-row *ngFor="let item of contacts" (click)="presentActionSheet(item)">
-        <ion-item *ngIf="item.status != 'SELECTED'">
-          <ion-avatar item-start>
-            <img src="{{item.avatar | urlAvatar}}">
-          </ion-avatar>
-          <h2>{{item.idUser}}</h2>
-          <p>{{item.email}}</p>
-  
-        </ion-item>
-      </ion-row>
-    </ion-list>
+    <ion-list-header>CONTACTOS</ion-list-header>
+    <ion-row *ngFor="let item of contacts" (click)="presentActionSheet(item)">
+      <ion-item *ngIf="item.status != 'SELECTED'">
+        <ion-avatar item-start>
+          <img src="{{item.avatar | urlAvatar}}">
+        </ion-avatar>
+        <h2>{{item.idUser}}</h2>
+        <p>{{item.email}}</p>
+      </ion-item>
+    </ion-row>
+  </ion-list>
   <ion-list>
     <ion-list-header>CONTACTOS ELEGIDOS</ion-list-header>
     <ion-row *ngFor="let item of contacts" (click)="presentActionSheet(item)">
@@ -52,9 +44,7 @@
         </ion-avatar>
         <h2>{{item.idUser}}</h2>
         <p>{{item.email}}</p>
-
       </ion-item>
     </ion-row>
   </ion-list>
-
 </ion-content>

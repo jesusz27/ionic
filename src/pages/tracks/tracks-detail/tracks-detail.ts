@@ -9,6 +9,7 @@ import { Location } from "../../../models/location.model";
     selector: 'page-tracks-detail',
     templateUrl: 'tracks-detail.html'
 })
+
 export class TracksDetailPage {
     private listTracker: Track;
     private subscriber: any;
@@ -25,6 +26,7 @@ export class TracksDetailPage {
     ionViewDidLoad() {
         this.mapService.loadMap('map_canvas2');
     }
+    
     ngOnDestroy() {
         this.subscriber.unsubscribe();
     }

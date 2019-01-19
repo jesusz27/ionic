@@ -1,21 +1,18 @@
 <ion-header>
-
-    <ion-navbar>
-  
-      <button ion-button menuToggle start>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>
-        Personalizar avatar
-      </ion-title>
-      <ion-buttons end>
-        <notification></notification>
-      </ion-buttons>
-    </ion-navbar>
-  
-  </ion-header>
-  <ion-content>
-    <button ion-button  full (click)="openGallery()" >Seleccionar de galería</button>
-    <img [src]="base64Image" *ngIf="base64Image" width="200" height="200">
-    <button ion-button  full (click)="upload()" >Modificar Avatar</button>
-  </ion-content>
+  <ion-navbar>
+    <button ion-button menuToggle start>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Personalizar avatar
+    </ion-title>
+    <ion-buttons end>
+      <notification></notification>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <button ion-button full (click)="openGallery()">Seleccionar de galería</button>
+  <img [src]="base64Image" *ngIf="base64Image" width="200" height="200">
+  <button ion-button full (click)="upload()">Modificar Avatar</button>
+</ion-content>

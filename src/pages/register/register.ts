@@ -5,14 +5,18 @@ import { LoginPage } from '../login/login';
 import { AuthService } from '../../services/services-rest/auth.service'
 import { Strings } from "../../utils/strings";
 import { ToastService } from '../../services/toast.service';
+
 @Component({
     selector: 'page-register',
     templateUrl: 'register.html'
 })
+
 export class RegisterPage {
     credentials: User = { idUser: '', password: '', email: '' };
-    constructor(private nav: NavController, public authService: AuthService, private toastService: ToastService) {
+
+    constructor(public nav: NavController, public authService: AuthService, public toastService: ToastService) {
     }
+
     register() {
         this.authService.singUp(this.credentials).subscribe(
             (data) => {
@@ -22,9 +26,8 @@ export class RegisterPage {
         )
 
     }
+
     showLogin() {
         this.nav.setRoot(LoginPage);
     }
-
-
 }

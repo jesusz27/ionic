@@ -11,16 +11,13 @@ import { ContactsDangerPage } from "../contacts-danger/contacts-danger"
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
   status: boolean = true;
   location: Location;
   suscriber: any;
-  constructor(
-    public navCtrl: NavController,
-    public oneSignalService:OneSignalService,
-    public homeService: HomeService,
-    public socketService: SocketService,
-  ) {
+
+  constructor(public navCtrl: NavController, public oneSignalService: OneSignalService, public homeService: HomeService, public socketService: SocketService) {
     this.socketService.initialize();
     this.oneSignalService.getNoticationObservable().subscribe(
       data => {
@@ -28,6 +25,7 @@ export class HomePage {
       }
     )
   }
+
   startStop() {
     if (this.status) {
       this.homeService.startTracking();
@@ -40,6 +38,4 @@ export class HomePage {
   ionViewDidLoad() {
     this.homeService.loadMap('map_canvas');
   }
-
-
 }

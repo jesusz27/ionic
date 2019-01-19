@@ -5,14 +5,15 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class TrackDetailService {
-    static END_POINT = '/trackDetails';
+  static END_POINT = '/trackDetails';
 
-  constructor(private httpService: HttpService) {
-
+  constructor(public httpService: HttpService) {
   }
+
   findByIdTrack(code: String): Observable<any> {
     return this.httpService.authToken().get(TrackDetailService.END_POINT + '/' + code);
   }
+
   findById(id: String): Observable<any> {
     return this.httpService.authToken().get(TrackDetailService.END_POINT + '/id/' + id);
   }

@@ -5,23 +5,27 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { ToastService } from '../../../services/toast.service';
 import { UserStorageService } from '../../../services/user-storage.service';
-import {HttpService } from '../../../core/http.service'; 
+import { HttpService } from '../../../core/http.service';
 import { File } from '@ionic-native/file';
 import { User } from "../../../models/user.model";
 import { Strings } from "../../../utils/strings";
 import { Configs } from "../../../utils/configs";
+
 @Component({
     selector: 'page-avatar',
     templateUrl: 'avatar.html'
 })
+
 export class AvatarPage {
     base64Image: any;
     idUser: string;
-    constructor(private navCtr: NavController, private camera: Camera, private sanitizer: DomSanitizer, private transfer: FileTransfer, private file: File, private loadingCtrl: LoadingController, private userStorageService: UserStorageService, private toastService: ToastService, private httpService:HttpService) {
+
+    constructor(public navCtr: NavController, public camera: Camera, public transfer: FileTransfer, public file: File, public loadingCtrl: LoadingController, public userStorageService: UserStorageService, public toastService: ToastService, public httpService: HttpService) {
         this.userStorageService.getIdUser().then(
             (idUser) => this.idUser = idUser
         )
     }
+
     openGallery() {
         const options: CameraOptions = {
             quality: 70,
@@ -37,6 +41,7 @@ export class AvatarPage {
         });
 
     }
+
     upload() {
         if (this.base64Image) {
             let loader = this.loadingCtrl.create({
@@ -51,17 +56,15 @@ export class AvatarPage {
                 chunkedMode: false,
                 httpMethod: 'put',
                 mimeType: "image/jpeg",
-                headers: {'authorization': this.httpService.getToken() },
+                headers: { 'authorization': this.httpService.getToken() },
             }
             fileTransfer.upload(this.base64Image, Configs.SERVER + '/users/' + this.idUser + '/avatar', options)
                 .then((data) => {
-                    console.log(data.response);
                     const user: User = JSON.parse(data.response);
                     this.userStorageService.setAvatar(user.avatar);
                     this.toastService.presentToast(Strings.CARGADO_CORRECTAMENTE);
                     loader.dismiss();
                 }, (err) => {
-                    console.log(err);
                     this.toastService.presentToast(Strings.CARGADO_INCORRECTAMENTE);
                     loader.dismiss();
                 });

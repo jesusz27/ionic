@@ -4,7 +4,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
-
 import { ContactsDangerPage } from '../pages/contacts-danger/contacts-danger';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
@@ -49,6 +48,7 @@ import { File } from '@ionic-native/file';
 import { DateFormatPipe } from '../pipes/date-format/date-format';
 import { UrlAvatarPipe } from '../pipes/url-avatar/url-avatar';
 import { Configs } from '../utils/configs';
+
 const config: SocketIoConfig = {
   url: Configs.SERVER,
   options: {

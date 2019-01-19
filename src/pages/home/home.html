@@ -1,7 +1,5 @@
 <ion-header>
-
   <ion-navbar>
-
     <button ion-button menuToggle start>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -12,28 +10,22 @@
       <notification></notification>
     </ion-buttons>
   </ion-navbar>
-
 </ion-header>
-
 <ion-content>
-    <div id="map_canvas">
-    </div>
-
-
-
+  <div id="map_canvas"></div>
 </ion-content>
 <ion-footer text-justify>
   <ion-toolbar text-center="" color="dark">
     <ion-buttons>
       <button ion-button (click)="startStop()">
-        <ion-icon [name]="status ? 'play' :'square'" ></ion-icon>
+        <ion-icon [name]="status ? 'play' :'square'"></ion-icon>
       </button>
       <button ion-button>
-        <ion-icon ></ion-icon>
+        <ion-icon></ion-icon>
       </button>
       <button ion-button>
-          <ion-icon ></ion-icon>
-        </button>
+        <ion-icon></ion-icon>
+      </button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

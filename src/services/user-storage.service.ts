@@ -7,8 +7,8 @@ export class UserStorageService {
     public idUser: string;
     public avatar: string;
     constructor(public storage: Storage) {
-
     }
+
     setIdUser(idUser: string) {
         this.storage.set('idUser', idUser);
         this.idUser = idUser;
@@ -20,12 +20,15 @@ export class UserStorageService {
                 return idUser;
             });
     }
+
     setAvatar(avatar: string) {
         this.avatar = avatar;
     }
+
     getAvatar(): string {
         return this.avatar;
     }
+    
     removeIdUser() {
         this.storage.clear();
     }

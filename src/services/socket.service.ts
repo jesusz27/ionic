@@ -7,13 +7,12 @@ import { UserStorageService } from './user-storage.service'
 
 @Injectable()
 export class SocketService {
-
   static LOCATION_EMIT = 'startSendingAlerts';
   static LOCATION_ON = 'receptorAlerts';
   static ADD_USER = 'addUserSocket';
- 
+
   constructor(public socket: Socket, public trackStorageService: TrackStorageService, public userStorageService: UserStorageService) {
-    const activeSocket=this.getTrackHelp().subscribe();
+    const activeSocket = this.getTrackHelp().subscribe();
     activeSocket.unsubscribe();
   }
 
@@ -22,11 +21,11 @@ export class SocketService {
       this.userStorageService.getIdUser()
         .then((idUser) => {
           const user: User = { idUser: idUser };
-          console.log("socket init" + idUser);
           this.addUser(user);
         });
     });
   }
+
   getTrackHelp(): Observable<any> {
     return new Observable(observer => {
       this.socket.on(SocketService.LOCATION_ON, (data) => {
@@ -35,12 +34,12 @@ export class SocketService {
       });
     })
   }
+
   emitTrackHelp(location) {
     this.socket.emit(SocketService.LOCATION_EMIT, location);
   }
+
   addUser(user: User) {
-    console.log("emit adduser");
     this.socket.emit(SocketService.ADD_USER, user);
   }
-
 }

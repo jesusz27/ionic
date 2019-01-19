@@ -6,18 +6,14 @@ import 'rxjs/add/operator/filter';
 import { Location } from '../models/location.model';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+
 @Injectable()
 export class LocationTrackerService {
-
   watch: any;
   location: Location;
   locationObservable: Subject<Location> = new Subject();
 
-  constructor(
-    public backgroundGeolocation: BackgroundGeolocation,
-    public geolocation: Geolocation,
-  ) {
-
+  constructor(public backgroundGeolocation: BackgroundGeolocation, public geolocation: Geolocation) {
   }
 
   public initialize() {
@@ -33,13 +29,12 @@ export class LocationTrackerService {
   public backgroundLocation() {
     let config = this.config();
     this.backgroundGeolocation.configure(config).subscribe((location) => {
-      console.log('BackgroundGeolocation:  ' + JSON.stringify(location));
     }, (err) => {
       console.log(err);
     });
-
     this.backgroundGeolocation.start();
   }
+
   public foregroundLocation() {
     let options = {
       frequency: 3000,
@@ -52,20 +47,23 @@ export class LocationTrackerService {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
       };
+
       this.locationObservable.next(location);
     });
   }
+
   public config() {
     let config: BackgroundGeolocationConfig = {
       desiredAccuracy: 50,
       stationaryRadius: 20,
       distanceFilter: 10,
-      debug: true,
+      debug: false,
       interval: 2000
     };
     return config;
   }
-  getLocationObservable(): Observable<Location>{
+
+  getLocationObservable(): Observable<Location> {
     return this.locationObservable.asObservable();
- }
+  }
 }

@@ -7,6 +7,6 @@ export enum Strings {
   CONTACTO_ACTUALIZADO = "Contacto actualizado",
   CONTACTO_ELIMINADO = "Contacto eliminado",
   CONTACTO_AGREGADO = "Contacto agregado",
-  OPERACION_EXITOSA = "operación exitosa",
+  OPERACION_EXITOSA = "Operación exitosa",
   AGREGAR_PERFIL = "Agregar información de perfil"
 }

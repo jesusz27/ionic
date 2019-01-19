@@ -6,20 +6,16 @@
     <ion-title>Notificaciones</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content>
   <ion-list>
-      <ion-list-header>USUARIOS EN PELIGRO</ion-list-header>
+    <ion-list-header>USUARIOS EN PELIGRO</ion-list-header>
     <ion-item *ngFor="let item of trackStorageList">
       <ion-thumbnail item-start>
         <img *ngIf="item.avatar" src="{{item.avatar | urlAvatar}}">
       </ion-thumbnail>
-      <h2>{{item.idTrack}}</h2>
+      <h2>Alerta</h2>
       <p>{{item.idUser}}</p>
-      <button ion-button clear item-end (click)="openPage(item.idTrack)">View</button>
+      <button ion-button clear item-end (click)="openPage(item.idTrack)">Ver</button>
     </ion-item>
-
-
-
   </ion-list>
 </ion-content>

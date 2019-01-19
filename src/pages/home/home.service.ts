@@ -6,6 +6,7 @@ import { Socket } from 'ng-socket-io';
 import { MapService } from "../../services/map.service";
 import { UserStorageService } from "../../services/user-storage.service"
 import { Location } from '../../models/location.model';
+
 @Injectable()
 export class HomeService {
     private idTrack: string = '';
@@ -13,8 +14,6 @@ export class HomeService {
     private listLocation: Location[];
     private idUser: string;
     constructor(public locationTrackerService: LocationTrackerService, public socket: Socket, public mapService: MapService, public userStorageService: UserStorageService) {
-        /* this.userStorageService.getIdUser()
-             .then((idUser) => this.userStorageService.setIdUser(idUser))*/
         this.userStorageService.getIdUser().then(
             idUser => this.idUser = idUser
         )
@@ -25,13 +24,13 @@ export class HomeService {
         this.locationTrackerService.initialize();
         this.listLocation = [];
         let i: number = 1;
+
         this.subscribe = this.locationTrackerService.getLocationObservable().subscribe(
             data => {
                 if (this.idUser) {
                     const location: Location = data;
                     location.idUser = this.idUser;
                     location.idTrack = this.idTrack;
-                    console.log(location);
                     this.socket.emit('startSendingAlerts', JSON.stringify(location), (response) => {
                         console.log("response: " + response);
                     });
@@ -43,6 +42,7 @@ export class HomeService {
         )
 
     }
+
     private idTrackrand(): string {
         const chars = "0123456789abcdefABCDEF";
         const lon = 20;
@@ -53,15 +53,18 @@ export class HomeService {
         }
         return code;
     }
+
     public stopTracking() {
         this.mapService.clear();
         this.reset();
         this.subscribe.unsubscribe();
         this.locationTrackerService.end();
     }
+
     private reset() {
         this.idTrack = '';
     }
+
     public loadMap(idDiv) {
         this.mapService.loadMap(idDiv);
     }

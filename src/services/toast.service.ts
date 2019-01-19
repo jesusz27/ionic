@@ -6,8 +6,8 @@ import { ToastController } from 'ionic-angular';
 export class ToastService {
 
   constructor(public toastCtrl: ToastController) {
-
   }
+  
   presentToast(message: string) {
     let toast = this.toastCtrl.create({
       message: message,

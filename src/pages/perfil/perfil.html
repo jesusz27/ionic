@@ -1,7 +1,5 @@
 <ion-header>
-
   <ion-navbar>
-
     <button ion-button menuToggle start>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -12,9 +10,7 @@
       <notification></notification>
     </ion-buttons>
   </ion-navbar>
-
 </ion-header>
-
 <ion-content>
   <ion-list-header>COMPLETAR DATOS DE PERFIL</ion-list-header>
   <div class="register-box">
@@ -25,7 +21,6 @@
             <ion-icon name="contact" item-start></ion-icon>
             <ion-input type="text" placeholder="Nombre" name="firstName" [(ngModel)]="person.firstName" required></ion-input>
           </ion-item>
-
           <ion-item>
             <ion-icon name="contacts" item-start></ion-icon>
             <ion-input type="text" placeholder="Apellido" name="lastName" [(ngModel)]="person.lastName" required></ion-input>
@@ -39,11 +34,9 @@
             <ion-label>Fecha de Nacimiento</ion-label>
             <ion-datetime [(ngModel)]="person.birthdate"></ion-datetime>
           </ion-item>
-
         </ion-list>
       </ion-col>
     </ion-row>
-
     <ion-row>
       <ion-col *ngIf="toogle" class="signup-col">
         <button ion-button class="submit-btn" full (click)="save()">Guardar</button>
@@ -53,7 +46,4 @@
       </ion-col>
     </ion-row>
   </div>
-
-
-
 </ion-content>

@@ -16,8 +16,8 @@ import {
 @Injectable()
 export class MapService {
   map: GoogleMap;
+  
   constructor(private googleMaps: GoogleMaps) {
-    console.log('Hello MapProvider Provider');
   }
 
   public loadMap(idDiv) {
@@ -33,17 +33,15 @@ export class MapService {
     };
     this.map = GoogleMaps.create(idDiv, mapOptions);
   }
+
   public addMarker(location: Location) {
     let marker: Marker = this.map.addMarkerSync({
       title: 'Ionic',
       icon: 'blue',
-      //  animation: 'DROP',
       position: this.toLatLng(location),
     });
-    marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-      alert('clicked');
-    });
   }
+
   public drawAllPolyline(location: Location[]) {
     const listPolyline: any[] = [];
     for (let i = 0; i < location.length; i++) {
@@ -59,9 +57,11 @@ export class MapService {
     });
     this.centerMap(listPolyline[listPolyline.length - 1]);
   }
+
   toLatLng(location: Location) {
     return new LatLng(location.latitude, location.longitude);
   }
+
   private centerMap(coors: LatLng) {
     let camaraPosition: CameraPosition<LatLng> = {
       target: coors,
@@ -74,5 +74,4 @@ export class MapService {
   clear() {
     this.map.clear();
   }
-
 }

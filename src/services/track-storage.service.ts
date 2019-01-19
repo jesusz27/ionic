@@ -5,7 +5,7 @@ import { Location } from '../models/location.model';
 import { TrackStorage } from '../models/trackStorage.model';
 import { TrackDetailService } from './services-rest/track-detail.service';
 import { UserService } from './services-rest/user.service';
-import { User } from '../models/user.model'; 
+import { User } from '../models/user.model';
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
@@ -13,12 +13,12 @@ export class TrackStorageService {
     trackStorageList: TrackStorage[] = [];
     private observableTrackDetail: Subject<TrackStorage[]> = new Subject();
     private observableTrack: Subject<TrackStorage[]> = new Subject();
+
     constructor(private trackDetailService: TrackDetailService, private userService: UserService) {
     }
+
     public add(data: string) {
         const location: Location = JSON.parse(data);
-        console.log("location");
-        console.log(location);
         const exist = this.search(location.idTrack);
         if (exist != undefined) {
             this.trackStorageList[exist].location.push(location)
@@ -28,6 +28,7 @@ export class TrackStorageService {
         }
 
     }
+
     private search(idTrack: string) {
         let exist = undefined;
         for (let i = 0; i < this.trackStorageList.length; i++) {
@@ -37,6 +38,7 @@ export class TrackStorageService {
         }
         return exist;
     }
+
     private searchTrackDB(idTrack: string, idUser: string) {
         return this.trackDetailService.findByIdTrack(idTrack).subscribe(
             data => {
@@ -54,12 +56,15 @@ export class TrackStorageService {
             }
         );
     }
+
     getObservableTrack(): Observable<TrackStorage[]> {
         return this.observableTrack.asObservable();
     }
+
     getObservableTrackDetail(): Observable<TrackStorage[]> {
         return this.observableTrackDetail.asObservable();
     }
+
     private searchUser(idUser: string, idTrack: string) {
         return this.userService.readOne(idUser).subscribe(
             data => {
@@ -71,5 +76,4 @@ export class TrackStorageService {
             }
         );
     }
-
 }
