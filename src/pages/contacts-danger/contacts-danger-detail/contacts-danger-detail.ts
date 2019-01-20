@@ -41,7 +41,7 @@ export class ContactsDangerDetailPage {
         if (this.change == 0 || this.change != this.trackStorageList[i].location.length) {
           this.change = this.trackStorageList[i].location.length;
           this.mapService.drawAllPolyline(this.trackStorageList[i].location);
-          if (j == 1) { this.mapService.addMarker(this.trackStorageList[i].location[0]); j++; }
+          if (j == 1) { this.mapService.addMarker(this.trackStorageList[i].location[0], 0); j++; }
         }
       }
     }

@@ -18,7 +18,9 @@ export class TracksDetailPage {
         this.subscriber = this.trackDetailService.findById(idTrackDetail).subscribe(
             data => {
                 const location: Location[] = JSON.parse(data.locationStorage);
+                this.mapService.addMarker(location[0], 0);
                 this.mapService.drawAllPolyline(location);
+                this.mapService.addMarker(location[location.length-1], 1);
             }
         )
     }

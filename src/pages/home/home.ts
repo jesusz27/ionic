@@ -23,7 +23,7 @@ export class HomePage {
       data => {
         this.navCtrl.push(ContactsDangerPage);
       }
-    )
+    );
   }
 
   startStop() {
@@ -35,7 +35,8 @@ export class HomePage {
     this.status = !this.status;
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.homeService.loadMap('map_canvas');
+    this.homeService.restartMarker();
   }
 }

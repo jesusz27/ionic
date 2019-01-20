@@ -20,6 +20,7 @@ export class HomeService {
     }
 
     public startTracking() {
+        this.mapService.clear();
         this.idTrack = this.idTrackrand();
         this.locationTrackerService.initialize();
         this.listLocation = [];
@@ -34,13 +35,17 @@ export class HomeService {
                     this.socket.emit('startSendingAlerts', JSON.stringify(location), (response) => {
                         console.log("response: " + response);
                     });
-                    if (i == 1) { this.mapService.addMarker(location); i++; }
+                    if (i == 1) { this.mapService.addMarker(location, 0); i++; }
                     this.listLocation.push(location);
                     this.mapService.drawAllPolyline(this.listLocation);
                 }
             }
         )
 
+    }
+
+    restartMarker() {
+        this.mapService.addMarker(this.listLocation[0], 0);
     }
 
     private idTrackrand(): string {
@@ -55,7 +60,7 @@ export class HomeService {
     }
 
     public stopTracking() {
-        this.mapService.clear();
+        this.mapService.addMarker(this.listLocation[this.listLocation.length-1], 1);
         this.reset();
         this.subscribe.unsubscribe();
         this.locationTrackerService.end();

@@ -10,14 +10,20 @@ import {
   MarkerOptions,
   Marker,
   Polyline,
-  LatLng
+  LatLng,
+  MarkerIcon
 } from '@ionic-native/google-maps';
 
 @Injectable()
 export class MapService {
   map: GoogleMap;
-  
+  icon: MarkerIcon[];
   constructor(private googleMaps: GoogleMaps) {
+    this.icon = [
+      { url: './assets/imgs/marcador-a.png', size: { width: 25, height: 40 } },
+      { url: './assets/imgs/marcador-b.png', size: { width: 25, height: 40 } },
+    ];
+
   }
 
   public loadMap(idDiv) {
@@ -34,10 +40,10 @@ export class MapService {
     this.map = GoogleMaps.create(idDiv, mapOptions);
   }
 
-  public addMarker(location: Location) {
+  public addMarker(location: Location, indexMarker: number) {
     let marker: Marker = this.map.addMarkerSync({
-      title: 'Ionic',
-      icon: 'blue',
+      title: 'Marker',
+      icon: this.icon[indexMarker],
       position: this.toLatLng(location),
     });
   }

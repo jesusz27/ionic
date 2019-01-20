@@ -37,7 +37,7 @@ export class AvatarPage {
         this.camera.getPicture(options).then((imageData) => {
             this.base64Image = 'data:image/jpeg;base64,' + imageData;
         }, (err) => {
-            this.toastService.presentToast("Error" + err);
+            this.toastService.presentToast(Strings.IMAGEN_NO_IMPORTADA);
         });
 
     }
